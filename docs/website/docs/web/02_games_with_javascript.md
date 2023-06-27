@@ -4,7 +4,9 @@ sidebar_label: "Games with Javascript"
 
 # Making games with Javascript
 
-https://youtu.be/AfTqoNiWCvQ by engineer at [Eko](https://eko.com/)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AfTqoNiWCvQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+ by engineer at [Eko](https://eko.com/)
 
 ### download an app is too much friction
 
