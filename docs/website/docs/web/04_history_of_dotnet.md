@@ -65,3 +65,5 @@ Versions of `.NET Core` after 5 are simply called `.NET`
 - Xamarin
 - WebAPI vs these frameworks?
   - What do people mean when refering to web frameworks instead of frameworks like .NET ??
+- Dotnet for beginners https://news.ycombinator.com/item?id=26882606
+- Examples of best C# code https://news.ycombinator.com/item?id=33329079
