@@ -16,7 +16,7 @@ sidebar_label: "History of .NET"
 
 ### What is .NET?
 
-- `.NET` is a platform 
+- `.NET` is a server-side platform 
   - C# / F# / VB is converted to a Compiled Intermediate Language (CIL)
   - Just-In-Time compiler converts CIL to machine code 
   - Language =/= Framework. Different versions of languages have different compatibilities with `.NET`.
@@ -38,24 +38,46 @@ Versions of `.NET Core` after 5 are simply called `.NET`
   - ^ Does it bridge all these into one abstraction layer?
 - `.NET 6.0` collapses above abstraction layers into one ???
 
+### History lessons from .NET
+
+- Java was invented in 1995 as a platform independent language
+- .NET Framework was invented in 2002 to fit the microsoft ecosystem. They are competitors
+- Modern .NET is platform independent, especially given IaaS services that virtualise the operating system
+- .NET was invented as a comprehensive development platform for windows applications and web services
+- Why was .NET invented with Just-in-time (JIT) compilation?
+  - Performance optimization: Runtime information allows the compiler to make optimizations based on the specific execution context. It can be highly optimized for target hardware compared to static compilation.
+    - E.G Choosing SSE2 vector CPU instructions when the CPU supports them
+    - System collects statistics about how the program is actually running in the environment, it can therefore recompile for optimal performance
+    - Global code optimizations without losing the advantages of dynamic linking and without the overheads inherent to static compilers and linkers
+- Why is .NET still around?
+  - It's now cross-platform, there's an active open-source community and it's still supported by microsoft with integrations with microsoft products
+- **[XAML](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/xaml/?view=netdesktop-6.0)** : Declarative markup language for creating the UI for a .NET app
+- **[Windows Communication Foundation (WCF)](https://learn.microsoft.com/en-us/dotnet/framework/wcf/whats-wcf)** : framework for building service-oriented applications
+  - TODO: Examine in more detail
+
+### [.NET Myths Dispelled](https://news.ycombinator.com/item?id=30654114)
+
+- TODO:
+
 ### What questions did I ask?
 
 -  What is the history of platform independent code?
--  How does Java relate to .NET?
+   -  How does Java relate to .NET?
 -  Are operating systems just part of the "plumbing" now?
    -  is this the idea of IaaS
--  Why was .NET invented?
+- Why was .NET invented?
    -  What problem was Just-in-time compilation solving?
    -  Why did it survive? Why is it still supported?
-   -  Is .NET serverside or clientside?
+   -  Is .NET serverside or clientside? Yes. .NET is a serverside MVC framework.
    -  Does .NET support unity??
--  Why is javascript not compiled?
--  What is language parity? What is feature parity?
+-  Why is javascript interpreted?
+   - Must run on multiple platforms --> Cannot be compiled to native machine code because it needs to run on many platforms
+   - Must be embeddable in HTML pages --> Needs to dynamically handle events & callbacks from HTML elements so it needs to be interpreted unless you compile the entire webpage
 -  What is a modern services dev?
    -  WebAPI?
    -  Microservices?
 -  Web developers are used to lousy tools...
-   -  What are good tools?
+   -  [What are good tools?](./05_web_tooling.md)
 -  What is XAML?
 -  What is WCF?
 
