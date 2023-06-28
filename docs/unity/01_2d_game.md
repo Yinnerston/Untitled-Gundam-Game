@@ -65,3 +65,8 @@ sidebar_label: "First 2D Game"
 ### Best practices
 
 - Different scripts for different behaviours
+
+### Publishing your unity build
+
+- Install Unity Publish WebGL package
+- Build as WebGL
