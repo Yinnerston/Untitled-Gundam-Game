@@ -21,12 +21,37 @@ I feel like I should revisit OOP
 - Interface: Define constract that can be implemented by classes and structs.
 - Enum: Set of constant values
 
-### Design patterns
+### [Design patterns](https://refactoring.guru/design-patterns/catalog)
 
-- **Singleton Pattern**: The Singleton pattern ensures that only one instance of a class exists throughout the application. It can be useful for managing global game objects or systems like a game manager or audio manager.
+- **Singleton Pattern**: The Singleton pattern ensures that **only one instance** of a class exists throughout the application. It can be useful for managing global game objects or systems like a game manager or audio manager.
+  - Implementation: 
+    - Make default constructor private
+    - Static creation method that creates the first object or returns a reference to the singleton object
+  - Use cases:
+    - Log files
+    - Database class (for one database)
+    - Game world
+- ![Singleton Pattern](imgs/singleton-pattern.png)
 - **Factory Pattern**: The Factory pattern provides a way to create objects without exposing the creation logic to the client. It can be used when you need to instantiate different types of objects based on certain conditions or parameters.
+  - Implementation:
+    - Define a method to create objects instead of using the object's constructor directly
+    - Subclass the factory to create different subclassed objects
+  - Use case:
+    - Resolve dependencies by ensuring the dependencies are resolved in the factory class
+    - Encapsulate complex initialization logic
+    - Payment gateways for different providers
+    - Data Loaders for different formats
+    - Auth providers for different auth providers
 - **Observer Pattern**: The Observer pattern establishes a one-to-many dependency between objects, where changes in one object trigger updates in other objects. This pattern is useful for event handling or creating systems that require communication between different components.
+  - Use cases:
+    - Any event driven programming
+  - ![Observer pattern](imgs/observer-pattern.png)
+  - ![Observer pattern UML](imgs/observer-pattern-diagram.png)
 - **Command Pattern**: The Command pattern encapsulates a request as an object, allowing you to parameterize clients with different requests, queue or log requests, and support undo operations. It can be used for input handling, AI behaviors, or implementing an undo/redo system.
+  - Implementation:
+    - Put business logic in a class implementing a Command interface that executes the functionality you want
+  - Use cases:
+    - Different UI elements reusing commands
 - **Strategy Pattern**: The Strategy pattern defines a family of algorithms, encapsulates them, and makes them interchangeable. It enables you to select algorithms at runtime, providing flexibility and avoiding code duplication. This pattern is useful for implementing different behaviors or strategies for AI or game mechanics.
 - **Object Pooling Pattern**: The Object Pooling pattern pre-creates and maintains a group of reusable objects to improve performance by avoiding instantiation and destruction overhead. It is commonly used for managing bullets, particle effects, or other frequently created/destroyed objects.
 - **Component Pattern**: The Component pattern is commonly used in Unity, where game objects are composed of smaller reusable components. Each component encapsulates a specific behavior or functionality, which can be easily added or removed from objects at runtime.

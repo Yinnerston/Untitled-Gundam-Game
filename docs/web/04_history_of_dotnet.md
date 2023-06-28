@@ -31,12 +31,15 @@ sidebar_label: "History of .NET"
 :::tip Versions
 Versions of `.NET Core` after 5 are simply called `.NET`
 :::
-- `.NET Standard` bridges the gap of ???
-  - Xamarin
-  - Mono
+- `.NET Standard` bridges the gap of ??? --> Replaced by .NET 5.0
   - Unity
   - ^ Does it bridge all these into one abstraction layer?
 - `.NET 6.0` collapses above abstraction layers into one ???
+- Xamarin : platform for developing native mobile applications using .NET
+  - Is this a pokemon? It evolved into `.NET MAUI`
+- Mono : Open source implementation of .NET DEAD
+- ASP.NET: Web application framework related to .NET
+
 
 ### History lessons from .NET
 
