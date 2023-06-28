@@ -1,6 +1,7 @@
 name: Test deployment
 
 on:
+  workflow_dispatch: # Makes workflow manually runnable
   pull_request:
     paths:
       - docs/**
