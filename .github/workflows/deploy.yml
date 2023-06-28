@@ -2,6 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
+    paths:
+      - docs/**
     branches:
       - main
     # Review gh actions docs if you want to further define triggers, paths, etc
@@ -10,8 +12,9 @@ on:
 jobs:
   deploy:
     name: Deploy to GitHub Pages
-      working-directory: ./docs/website
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./docs/website
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -21,14 +24,16 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+        working-directory: ${{env.working-directory}}
         
       - name: Build website
         run: npm run build
+        working-directory: ${{env.working-directory}}
       # Popular action to deploy to GitHub Pages:
       # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        working-directory: ./docs/website
+        working-directory: ${{env.working-directory}}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Build output to publish to the `gh-pages` branch:
