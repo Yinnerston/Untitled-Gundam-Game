@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[697],{6526:e=>{e.exports=JSON.parse('{"label":"hola","permalink":"/Untitled-Gundam-Game/blog/tags/hola","allTagsPath":"/Untitled-Gundam-Game/blog/tags","count":1}')}}]);
