@@ -3,8 +3,6 @@ name: Deploy to GitHub Pages
 on:
   workflow_dispatch: # Makes workflow manually runnable
   push:
-    paths:
-      - docs/**
     branches:
       - main
     # Review gh actions docs if you want to further define triggers, paths, etc
