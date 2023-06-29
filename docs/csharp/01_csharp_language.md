@@ -4,6 +4,10 @@ sidebar_label: "C# Language and .NET"
 
 # C Language and .NET
 
+Recommended Textbooks:
+- *C# in Depth, 4th ed*., by Jon Skeet
+- *Code Like a Pro in C#*, by Jort Rodenburg
+
 ### Why use C#
 
 - We use C# in our chosen game engine [Unity](https://unity.com/)
