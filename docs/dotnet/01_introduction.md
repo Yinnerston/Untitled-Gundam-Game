@@ -20,6 +20,7 @@ Paradigms build on top of ASP.NET Core.
 - gRPC APIs—Used to build efficient binary APIs for server-to-server communication using the gRPC protocol.
   - RPC framework: Execute procedures on a remote computer through requests
 - Razor Pages—Used to build page-based server-rendered applications.
+  - Use the pages paradigm when your content is structured around action pages --> Like "Contact", "About Us", or "Login"
 - MVC controllers—Similar to Razor Pages. Model-View-Controller (MVC) controller applications are for server-based applications but without the page-based paradigm.
 - Blazor WebAssembly—A browser-based single-page application framework that uses the WebAssembly standard, similar to JavaScript frameworks such as Angular, React, and Vue.
 - Blazor Server—Used to build stateful applications, rendered on the server, that send UI events and page updates over WebSockets to provide the feel of a client-side single-page application but with the ease of development of a server-rendered application
