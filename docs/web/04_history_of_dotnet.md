@@ -17,6 +17,8 @@ sidebar_label: "History of .NET"
 ### What is .NET?
 
 - `.NET` is a server-side platform 
+  - Originally released as ASP.NET Web Forms --> GUI interface with event model to build websites
+    - Causes release of .NET Framework MVC because devs want more testability, plus better control over generated html and server state 
   - C# / F# / VB is converted to a Compiled Intermediate Language (CIL)
   - Just-In-Time compiler converts CIL to machine code 
   - Language =/= Framework. Different versions of languages have different compatibilities with `.NET`.
@@ -28,6 +30,9 @@ sidebar_label: "History of .NET"
   - Compilation /workload began to take too long due to too much added to the framework
   - Uses a different abstraction layer but has the same intermediate compiled languages
   - Think of .net core as a different abstraction layer that compiles into the same intermediate language
+  - .NET Core was invented in response to modern development trends such as cloud deployments, client side applications and cross-platform support. It evolved from the original .NET Framework which just supported the microsoft windows ecosystem
+  - TODO: [Evolution of .NET to .NET 7](https://andrewlock.net/understanding-the-dotnet-ecosystem-the-evolution-of-dotnet-into-dotnet-7/)
+  - TODO: [Introduction of .NET standard](https://andrewlock.net/understanding-the-dotnet-ecosystem-the-introduction-of-dotnet-standard/)
 :::tip Versions
 Versions of `.NET Core` after 5 are simply called `.NET`
 :::
@@ -46,6 +51,9 @@ Versions of `.NET Core` after 5 are simply called `.NET`
 - Java was invented in 1995 as a platform independent language
 - .NET Framework was invented in 2002 to fit the microsoft ecosystem. They are competitors
 - Modern .NET is platform independent, especially given IaaS services that virtualise the operating system
+  - Windows-specific features can be enabled with a Compatability Pack in .NET 5+
+  - .NET runtimes can be deployed using self-contained deployments (**SCD**) to computers which don't have .NET installed
+  - Previously relied on Windows IIS for webserver hosting which has been replaced by Kestrel (cross-platform webserver)
 - .NET was invented as a comprehensive development platform for windows applications and web services
 - Why was .NET invented with Just-in-time (JIT) compilation?
   - Performance optimization: Runtime information allows the compiler to make optimizations based on the specific execution context. It can be highly optimized for target hardware compared to static compilation.

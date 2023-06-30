@@ -4,6 +4,13 @@ sidebar_label: "C# Language and .NET"
 
 # C Language and .NET
 
+Recommended Textbooks on C#:
+- *C# in Depth, 4th ed*., by Jon Skeet
+- *Code Like a Pro in C#*, by Jort Rodenburg
+
+OOP Recap Textbook:
+- *Design Patterns: Elements of Reusable Object?Oriented Software*, by Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides (Gang of Four)
+
 ### Why use C#
 
 - We use C# in our chosen game engine [Unity](https://unity.com/)
