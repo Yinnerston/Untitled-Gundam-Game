@@ -19,3 +19,43 @@ Attributes: `[DataAttribute]` syntax using a annotation enclosed in `[` and `]` 
 using statement --> Disposes of context after statement has completed execution
 - We use this when seeding our first data data models in our web application. 
 - Where would this feature be useful?
+
+[Best way to compare strings](https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings)
+
+Interfaces
+
+Lambdas
+
+LINQ
+
+Null Coalescing operator / Nullable Reference Types
+
+Code Generators
+- Source Generators
+
+`yield return`
+- IAsyncEnumerable
+- Async Streaming
+- TAP
+
+Reflection
+
+Roslyn analysers
+
+Generics
+- Extension methods
+- Type guards
+
+Expression Trees
+
+IQueryable / Queryprovider
+- convert to SQL 
+
+Records
+
+Pattern matching
+
+Multithreading
+
+Actions
+- Side effects? For encapsulation?
