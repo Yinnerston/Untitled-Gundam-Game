@@ -73,12 +73,18 @@ I feel like I should revisit OOP
 
 [Building bug-free O-O software: An Introduction to Design by Contract](https://www.eiffel.com/values/design-by-contract/introduction/)
 
-[DBC in .NET framework](https://learn.microsoft.com/en-us/dotnet/framework/debug-trace-profile/code-contracts)
+**Code Contracts are not maintained (not recommended) in .NET Core.**
+- Alternative is to use [**Nullable Reference Types**](https://learn.microsoft.com/en-us/dotnet/csharp/nullable-references)
+- I think pre/post conditions and invariants are still useful for documentation and readability purposes.
+- Don't have to have strict type checking but defining clauses will help me formalize my system
+
+[DBC in .NET framework](https://learn.microsoft.com/en-us/dotnet/framework/debug-trace-profile/code-contracts) --> No longer supported by .NET Core
 
 How can you build reliable Object-Oriented software?
 - static typing --> Catches inconsistencies
 - Garbage collection
 - Reuseability? --> How do you validate the problem
+- Security
 
 :::tip Quality software
 > When quality is pursued, productivity follows
@@ -135,4 +141,8 @@ end
 What to watch out for using DbC?
 
 - dishonest subcontracting: If you strengthen the precondition or weaken the postcondition, this can lead to disaster
-  - 
+- Should tests be the contract?
+- Some problems can't be easily expressed as a contract.
+- Pre/Post conditions get exponentially more difficult with concurrency.
+  - Do I need a model checker to verify the pre/post conditions? I can use promela
+
