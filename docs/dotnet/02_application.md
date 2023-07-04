@@ -15,6 +15,7 @@ sidebar_label: "Application"
   - **Interface Segragation**:
   - **Dependency Inversion / Inversion of Control**: register the dependencies of your application into a container, which you can use to create any service. You can use the container to create both your own customc application services and the framework services used by ASP.NET Core
 - **WebApplication**: Configures middleware, register endpoints, starts 
+- **Don't Repeat Yourself (DRY)**
 
 ### ASP.NET Entry
 
