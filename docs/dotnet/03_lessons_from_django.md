@@ -72,3 +72,52 @@ SQL Server Object Explorer (SSOX):
 **LINQ Queries**: 
 - LINQ queries are lazily evaluated
 - Can construct lambda expressions on LINQ queries such as conditional filters
+
+**Atomic Operations**
+
+We need to ensure atomic database operations to prevent race conditions
+
+[**Database transactions**](https://learn.microsoft.com/en-us/ef/core/saving/transactions)
+
+Atomic workflow using Optimistic Concurrency:
+- https://stackoverflow.com/a/17976819
+
+### Authentication
+
+- TODO: Token based
+- [Authentication overview](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
+
+### Input Validation
+
+Sanitization
+
+Validate argument against expected format
+- [Model validation](https://learn.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/model-validation-in-aspnet-web-api)
+- [Web API Validation](https://www.c-sharpcorner.com/article/learn-about-web-api-validation/)
+
+Handling errors appropriately (see exceptions section)
+
+### Exceptions
+
+HTTP default status codes
+Types of errors:
+- Upstream errors
+- Validation errors
+- Business logic errors
+- 500 errors
+
+### Testing
+
+[Integration testing](https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-6.0) --> We write these
+
+### Performance Monitoring
+
+Should I use the same techniques?
+
+### Documentation
+
+Plan is to currently add it in the [docs repository](https://github.com/Yinnerston/Untitled-Gundam-Game)
+
+### Security
+
+- TODO:
