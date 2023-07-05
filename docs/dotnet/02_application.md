@@ -10,10 +10,15 @@ sidebar_label: "Application"
 - **Service**: Any class that provides functionality within an application. Modular components are exposed as services.
 - Time to review **SOLID** :>
   - **Single Responsibility Principle**: Every class should be responsible for only a single piece of functionality
-  - **Open closed**:
-  - **Liskov Substitution**:
-  - **Interface Segragation**:
+  - **Open closed**: Open for extension, but closed for modification
+    - When splitting the behaviour of a class, it should be split so that the functionality can be extended not modified
+    - Relating to inheritance and subclassing --> E.G. Classes such as Car or Bike should extend a Vehicle superclass, the Vehicle class shouldn't be modified for the subclasses
+  - **Liskov Substitution**: You should be able to change an instance using a subtype and the code will still work
+    - If a subclass throws an error on something it's superclass implements, this violates this principle
+  - **Interface Segragation**: More interfaces are better than too little
+    - Allows you to split classes without LSP violations
   - **Dependency Inversion / Inversion of Control**: register the dependencies of your application into a container, which you can use to create any service. You can use the container to create both your own customc application services and the framework services used by ASP.NET Core
+    - Depend on abstractions like interfaces not concrete instances
 - **WebApplication**: Configures middleware, register endpoints, starts 
 - **Don't Repeat Yourself (DRY)**
 
