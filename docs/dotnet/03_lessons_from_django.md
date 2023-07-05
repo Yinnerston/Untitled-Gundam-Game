@@ -25,6 +25,8 @@ I already have experience with the MVC paradigm through previous websites I've b
     - `@model YourApp.Pages.YourFolder.YourPage` specifies the type of model that is passed to the page
 - `@RenderBody` : placeholder where all the page-specific views show up, wrapped in the layout page
 - `@{...}` : The `{` and `}` characters enclose a block of c# code
+  - Can iterate using forloops using `@for`
+    - for loops can iterate over data in the ViewData directory. HTML elements are implicitly returned
 - The `ViewData` dictionary : K/V store that passes data to the view
 - `@namespace` Set the namespace in the template
   - Should I structure namespace based on file structure?

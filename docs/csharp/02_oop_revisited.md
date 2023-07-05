@@ -69,3 +69,80 @@ I feel like I should revisit OOP
 - **Proxy Pattern**: The Proxy pattern provides a surrogate or placeholder object that controls access to another object. It can be useful for implementing caching, load balancing, or security mechanisms in your web server.
 - **Template Method Pattern**: The Template Method pattern defines the skeleton of an algorithm in a base class and allows subclasses to override specific steps of the algorithm. It can be useful for defining a common structure for request handling, allowing subclasses to provide specific implementations.
 
+### Design By Contract (DbC)
+
+[Building bug-free O-O software: An Introduction to Design by Contract](https://www.eiffel.com/values/design-by-contract/introduction/)
+
+**Code Contracts are not maintained (not recommended) in .NET Core.**
+- Alternative is to use [**Nullable Reference Types**](https://learn.microsoft.com/en-us/dotnet/csharp/nullable-references)
+- I think pre/post conditions and invariants are still useful for documentation and readability purposes.
+- Don't have to have strict type checking but defining clauses will help me formalize my system
+
+[DBC in .NET framework](https://learn.microsoft.com/en-us/dotnet/framework/debug-trace-profile/code-contracts) --> No longer supported by .NET Core
+
+How can you build reliable Object-Oriented software?
+- static typing --> Catches inconsistencies
+- Garbage collection
+- Reuseability? --> How do you validate the problem
+- Security
+
+:::tip Quality software
+> When quality is pursued, productivity follows
+
+Carlo Ghezzi, Dino Mandrioli and Mehdi Jazayeri, SoftwareEngineering, Prentice Hall 1991
+:::
+
+**What is Design by Contract?
+**
+- We specify **a contract between a routine and a potential caller**. It contains the most important information that can be given about the routine: what each party in the contract must guarantee for a correct call, and what each party is entitled to in return.
+- To achieve this, we specify some  **clauses**:
+  - `require` : Input conditions or preconditions
+  - `ensure` : Output conditions or postconditions
+  - `rescue` : Mechanism to handle exceptions with strategies such as **retry**
+
+**What are the benefits of Design By Contract?
+**
+- If we do not specify what a module should do, what **guarantees** do we have that a module will do it? (Law of exluded miracles)
+- **Seamlessness** : We want to use a single notation and single set of concepts throughout the software lifecycle
+- **Standardised documentation**: I define a short form of documentation below which strips all implementation information but retains the contract
+- **Handling exceptions** : Exceptions are an inability to handle the contract
+  - Responses to exceptions under the DbC paradigm
+    - **Retrying**: Restore invariant and attempt again using the new strategy
+    - **Organized panic**: Restore invariant, terminate and report failure
+    - **False Alarm**: Continue (maybe take corrective measures)? This is the most unlikely scenario though.
+
+```
+class DICTIONARY [ELEMENT]
+feature
+	put (x: ELEMENT; key: STRING) is
+			-- Insert x so that it will be retrievable
+			-- through key.
+		require
+			count <= capacity
+			not key.empty 
+		ensure
+			has (x)
+			item (key) = x
+			count = old count + 1
+		end
+
+	... Interface specifications of other features ...
+
+invariant
+	0 <= count
+	count <= capacity
+end
+```
+
+**Invariants**: General clause which applies to an entire set of contracts defining a class
+- **Class invariants**: Describe properties which hold over all instances of a class
+- Why? We use class invariants for configuration management and regression testing
+
+What to watch out for using DbC?
+
+- dishonest subcontracting: If you strengthen the precondition or weaken the postcondition, this can lead to disaster
+- Should tests be the contract?
+- Some problems can't be easily expressed as a contract.
+- Pre/Post conditions get exponentially more difficult with concurrency.
+  - Do I need a model checker to verify the pre/post conditions? I can use promela
+

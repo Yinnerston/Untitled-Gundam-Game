@@ -30,7 +30,9 @@ sidebar_label: "Application"
 
 - Properties: Controls how VS launches and debugs
 - Dependencies: 
+  - Database context is injected into the controller in the MVC paradigm. How does this work?
 - Connected Services:
 - `.csproj` file: Defines project targets (platform, nuget packages)
-- `Program.cs`:
+- `Program.cs` : Import middleware
+- Shared views in MVC such as the menu layout go into the `Views/Shared` directory
 
