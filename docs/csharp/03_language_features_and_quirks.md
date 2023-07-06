@@ -12,6 +12,12 @@ What is the async model in c#? Any quirks I need to know?
 
 Decorators in c#?
 
+```csharp
+public TodoContext(DbContextOptions<TodoContext> options)
+    : base(options)
+```
+- What does the `: base(options)` syntax represent?
+
 Attributes: `[DataAttribute]` syntax using a annotation enclosed in `[` and `]` square brackets
 - E.G. `[SerializeField]` exposes the serializable field in the Unity Editor? 
 - Used to associate metadata or declarative information with code.
@@ -29,6 +35,7 @@ Lambdas
 LINQ
 
 Null Coalescing operator / Nullable Reference Types
+- What does a `= null!;` assignment represent?
 
 Code Generators
 - Source Generators
