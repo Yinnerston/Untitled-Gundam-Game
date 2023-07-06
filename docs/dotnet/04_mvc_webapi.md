@@ -1,8 +1,8 @@
 ---
-sidebar_label: "MVC"
+sidebar_label: "MVC & WebAPI"
 ---
 
-# MVC
+# MVC & WebAPI
 
 **Models**: Data model
 **Views**: UI Components
@@ -37,6 +37,11 @@ Ideas behind MVC:
 
 ### Models
 
-
+- DbContext
 
 ### Service Layer
+
+### WebAPI
+
+- Data Transfer Object (DTO)
+- Visual studio makes creating CRUD APIs very easy. Just define a model then create a scaffold item to controller

@@ -73,6 +73,11 @@ SQL Server Object Explorer (SSOX):
 - LINQ queries are lazily evaluated
 - Can construct lambda expressions on LINQ queries such as conditional filters
 
+How to relate the  following to transactions?
+- Db Context:
+- EntityState
+- `context.Entry(...).State`
+
 **Atomic Operations**
 
 We need to ensure atomic database operations to prevent race conditions
