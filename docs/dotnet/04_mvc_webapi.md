@@ -37,7 +37,70 @@ Ideas behind MVC:
 
 ### Models
 
-- DbContext
+- **DbContext** : Represents the unit of work
+  - **KNOWS Entities that have been previously queried on it** --> This can introduce bugs
+- DbSet
+
+Register DbContext with the dependency injection container
+
+Foreign Keys:
+- A One-To-One relationship requires:
+  - A primary key on the principal entity
+    - Optional: Reference navigation to principal
+    - By default, Id is the primary key
+  - A foreign key on the dependent entity
+    - Optional: Reference navigation to principal
+    - By default, EF makes a property as a foreign key when its name matches with the principal entity's primary key
+- Use `[ForeignKey(name)` to override the default attribute for a foreign key
+  - https://www.entityframeworktutorial.net/code-first/foreignkey-dataannotations-attribute-in-code-first.aspx
+```csharp
+using System.ComponentModel.DataAnnotations.Schema;
+public class Post  {  // principal
+  public int Id { get; set; }
+  public ICollection<Comment> Comments { get; set; }  // One to many relationship with Comment
+}
+
+public class Comment  { // dependent
+  public int Id { get; set; }
+  public int PostId { get; set; } // Reference to Post's PK makes this the foreign key
+  public Post Post { get; set; }  // Reference navigation to principal
+}
+```
+
+[Conditions & `DataAnnotation` Attributes on Entity attributes](https://learn.microsoft.com/en-us/ef/core/modeling/):
+- `required` keyword : Used to prevent warning on uninitialized non-nullable values.
+- Many-to-one relationships: Uze `ICollection<>`
+- Can override `OnModelCreating` in your DbContext and do custom configuration with the fluent API
+- `[Comment("")]`
+- `[MaxLength(X)]`
+- `[Unicode]` configured as unicode by default
+- `[Column(Order = X)]`
+
+Default Values
+- `[DatabaseGenerated(DatabaseGeneratedOption.Identity)]` value generated on inserted entities
+- `[DatabaseGenerated(DatabaseGeneratedOption.Computed)]` value generated on add or update
+- ^ is equvalent to:
+```csharp
+modelBuilder.Entity<Blog>()
+    .Property(b => b.Rating)
+    .HasDefaultValue(3);
+```
+- EF Core doesn't specify a default way to set timestamps:
+```csharp
+modelBuilder.Entity<Blog>()
+    .Property(b => b.Created)
+    .HasDefaultValueSql("getdate()");
+```
+- Computed values:
+```csharp
+modelBuilder.Entity<Person>()
+    .Property(p => p.DisplayName)
+    .HasComputedColumnSql("[LastName] + ', ' + [FirstName]");
+```
+
+**JSON Columns**:
+- [Release Notes](https://devblogs.microsoft.com/dotnet/announcing-ef7-release-candidate-2/)
+- 
 
 ### Service Layer
 
