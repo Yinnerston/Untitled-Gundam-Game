@@ -35,7 +35,11 @@ Lambdas
 LINQ
 
 Null Coalescing operator / Nullable Reference Types
-- What does a `= null!;` assignment represent?
+- [What does a `= null!;` assignment represent?](https://stackoverflow.com/questions/54724304/what-does-null-statement-mean)
+- This is the null forgiving operator --> `null!` applies the `!` operator to the value null
+  - Overrides nullability of `null` --> Tells compiler `null` is a non-null type
+  - This allows null to be safely accessed
+  - WARNING: This operator negates the compiler check for null safety. We shouldn't use it in our code.
 
 Code Generators
 - Source Generators
