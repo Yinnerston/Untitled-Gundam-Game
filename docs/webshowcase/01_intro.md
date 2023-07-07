@@ -15,10 +15,10 @@ erDiagram
     Post    {
         int id PK
         string title "StringLength=512"
-        string description "StringLength=4096"
+        string description "StringLength=4096, optional=True"
         int postType "enum value of type PostType"
         jsonb postData "json storing url, etc."
-        datetime created_at "DefaultValue=getutcdate"
+        datetime createdAt "DefaultValue=getutcdate"
         enum PostType "integer choice YOUTUBE: 0, WEBSITE: 1, WEBGL_ANIMATION: 2, WEBGL_GAME: 3"
     }
     CommentPath }o--|{ Post : "closure table"
@@ -27,9 +27,9 @@ erDiagram
     int id PK
     int post FK "Post"
     int user FK "User"
-    string comment_text "StringLength=4096"
-    datetime created_at "DefaultValue=getutcdate"
-    boolean has_replies "default=False. Denormalized count > 0 on descendents in CommentPath"
+    string commentText "StringLength=4096"
+    datetime createdAt "DefaultValue=getutcdate"
+    boolean hasReplies "default=False. Denormalized count > 0 on descendents in CommentPath"
     int depth "DefaultValue=0. >=0"
     }
     CommentPath   {
@@ -39,7 +39,7 @@ erDiagram
         int descendent FK "Comment"
         int depth "DefaultValue=0. >=0"
         ordering order "Order by [post, ancestor]"
-        constraint unique_together "[post, ancestor, descendent]"
+        constraint uniqueTogether "[post, ancestor, descendent]"
         index indices "[post, ancestor, descendent]"
     }
 
