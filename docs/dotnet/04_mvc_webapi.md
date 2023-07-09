@@ -35,6 +35,10 @@ Ideas behind MVC:
   - ![Layouts Example](imgs/layouts.png)
 - Views should avoid doing business logic or interacting with the db directly
 
+View Model: Alternate way to prevent overposting
+- Not the same as Data Transfer objects (DTO). View models encapsulate behaviour while DTOs cannot
+- View models cannot be serialised unlike DTOs, so they are not used in SPAs
+
 ### Models
 
 - **DbContext** : Represents the unit of work
@@ -108,9 +112,21 @@ Async Methods:
   - EF Core context is not thread safe
   - Verify library packages use async if they call EF Core methods that send queries to the db
 
+Select:
+- `_context.model.FirstOrDefaultAsync`: Select one or return default
+  - `SingleOrDefaultAsync`: throw error if more than one (extra work unnecessary if you just select one)
+  - `FindAsync`: Find entity with PK
+
+
+Performance:
+- Pagination
+- 
+
 ### Service Layer
 
 ### WebAPI
 
 - Data Transfer Object (DTO)
 - Visual studio makes creating CRUD APIs very easy. Just define a model then create a scaffold item to controller
+  - Default CRUD create scaffold is vulnerable to overposting (changing form inputs to post to fields that should not be updated)
+  - Use [`TryUpdateModelAsync`](https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/crud?view=aspnetcore-7.0#tryupdatemodelasync) to stop overposting
