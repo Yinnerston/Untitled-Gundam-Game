@@ -77,7 +77,7 @@ public class Comment  { // dependent
 - `[Column(Order = X)]`
 
 Default Values
-- `[DatabaseGenerated(DatabaseGeneratedOption.Identity)]` value generated on inserted entities
+- `[DatabaseGenerated(DatabaseGeneratedOption.Identity)]` value generated on inserted entities (On ANY INSERT)
 - `[DatabaseGenerated(DatabaseGeneratedOption.Computed)]` value generated on add or update
 - ^ is equvalent to:
 ```csharp
@@ -98,9 +98,15 @@ modelBuilder.Entity<Person>()
     .HasComputedColumnSql("[LastName] + ', ' + [FirstName]");
 ```
 
-**JSON Columns**:
+**JSON Columns**: Requires EF Core 7
 - [Release Notes](https://devblogs.microsoft.com/dotnet/announcing-ef7-release-candidate-2/)
 - 
+
+Async Methods:
+- Async methods are the default for .NET Core and EF Core
+  - Database action statements are executed asynchronously (not the lazily evaluated operations)
+  - EF Core context is not thread safe
+  - Verify library packages use async if they call EF Core methods that send queries to the db
 
 ### Service Layer
 
