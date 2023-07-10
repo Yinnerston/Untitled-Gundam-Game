@@ -106,21 +106,23 @@ modelBuilder.Entity<Person>()
 - [Release Notes](https://devblogs.microsoft.com/dotnet/announcing-ef7-release-candidate-2/)
 - 
 
-Async Methods:
-- Async methods are the default for .NET Core and EF Core
-  - Database action statements are executed asynchronously (not the lazily evaluated operations)
-  - EF Core context is not thread safe
-  - Verify library packages use async if they call EF Core methods that send queries to the db
-
 Select:
 - `_context.model.FirstOrDefaultAsync`: Select one or return default
   - `SingleOrDefaultAsync`: throw error if more than one (extra work unnecessary if you just select one)
   - `FindAsync`: Find entity with PK
 
+Model validation:
+- TODO: https://learn.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-7.0
+- Encountering this error frequently?
+
+Loading related data:
+- Lazy loading by default --> Data is not retried until a navigation property is accessed
+- Eager loading: Use `Include` and `ThenInclude` to read related classes in a larger, single query
+- Explicit loading: Use `Load` method to do explicit loading
 
 Performance:
 - Pagination
-- 
+- Limiting number of fetched objects with `Take`
 
 ### Service Layer
 

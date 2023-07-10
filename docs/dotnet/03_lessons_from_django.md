@@ -82,10 +82,27 @@ How to relate the  following to transactions?
 
 We need to ensure atomic database operations to prevent race conditions
 
+Pessimistic concurrency: Use database locks to prevent concurrency conflicts
+- con: Complex to implement, performance degrades as users increase
+Optimistic concurrency: Allows concurrency conflicts to happen, then reacts to rectify them
+- Types of error recovery include:
+  - Store-Wins scenario: Data store values take precendence and user is given an error on conflict
+  - Client-Wins / Last-In-Wins: Final write overwrites the preceeding writes
+  - Managing state for each transaction and db column: Unpractical to implement due to requirement of managing too much state
+- How are conflicts detected?
+  - [Concurrency token](https://learn.microsoft.com/en-us/ef/core/saving/concurrency?tabs=data-annotations): Property that tracks queries and emits a conflict on update or delete during `SaveChanges()`
+
 [**Database transactions**](https://learn.microsoft.com/en-us/ef/core/saving/transactions)
 
 Atomic workflow using Optimistic Concurrency:
 - https://stackoverflow.com/a/17976819
+
+Async Methods:
+- Async methods are the default for .NET Core and EF Core
+  - Database action statements are executed asynchronously (not the lazily evaluated operations)
+  - EF Core context is not thread safe
+  - Verify library packages use async if they call EF Core methods that send queries to the db
+
 
 ### Entity Framework
 
@@ -103,6 +120,7 @@ Ideas in EF Core:
   - Can have multiple `DbContext`(s) and integrate with different databases in one application
 - `DbSet` properties on the `DbContext` are added to the internal model --> Presents the collection of all entities in the context
   - So you don't have to manually add every entity to the model using `DbSet` as it finds them based on relationships between entities. However, it's best practice to expose a DbSet for each entity if you want to query on them.
+
 
 ![EF Core Internal Model](imgs/ef-core-internal-model.PNG)
 
