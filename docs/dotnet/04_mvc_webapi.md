@@ -129,6 +129,3 @@ Performance:
 ### WebAPI
 
 - Data Transfer Object (DTO)
-- Visual studio makes creating CRUD APIs very easy. Just define a model then create a scaffold item to controller
-  - Default CRUD create scaffold is vulnerable to overposting (changing form inputs to post to fields that should not be updated)
-  - Use [`TryUpdateModelAsync`](https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/crud?view=aspnetcore-7.0#tryupdatemodelasync) to stop overposting

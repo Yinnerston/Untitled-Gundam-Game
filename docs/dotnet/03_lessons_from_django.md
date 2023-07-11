@@ -91,6 +91,8 @@ Optimistic concurrency: Allows concurrency conflicts to happen, then reacts to r
   - Managing state for each transaction and db column: Unpractical to implement due to requirement of managing too much state
 - How are conflicts detected?
   - [Concurrency token](https://learn.microsoft.com/en-us/ef/core/saving/concurrency?tabs=data-annotations): Property that tracks queries and emits a conflict on update or delete during `SaveChanges()`
+    - Operation can complete if the values match, otherwise throw a `DbUpdateConcurrencyException`
+- 
 
 [**Database transactions**](https://learn.microsoft.com/en-us/ef/core/saving/transactions)
 
@@ -121,6 +123,18 @@ Ideas in EF Core:
 - `DbSet` properties on the `DbContext` are added to the internal model --> Presents the collection of all entities in the context
   - So you don't have to manually add every entity to the model using `DbSet` as it finds them based on relationships between entities. However, it's best practice to expose a DbSet for each entity if you want to query on them.
 
+- Visual studio makes creating CRUD APIs very easy. Just define a model then create a scaffold item to controller
+  - Default CRUD create scaffold is vulnerable to overposting (changing form inputs to post to fields that should not be updated)
+  - Use [`TryUpdateModelAsync`](https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/crud?view=aspnetcore-7.0#tryupdatemodelasync) to stop overposting on Edit
+  - In MVC --> `Bind` attribute prevents overposting on create by limiting postable fields
+    - Note that BIND clears out existing fields that are not bound, so the `TryUpdateModel` --> `SaveChanges` method is recommended for edits
+
+Entity States: What records should be updated on `SaveChanges()`
+- `Added` state: Mapped to INSERT
+- `Unchanged` state: starting state
+- `Modified` state: Mapped to UPDATE
+- `Deleted` state: Mapped to DELETE
+- `Detached` state: Isn't tracked by db context
 
 ![EF Core Internal Model](imgs/ef-core-internal-model.PNG)
 
@@ -168,3 +182,8 @@ Plan is to currently add it in the [docs repository](https://github.com/Yinnerst
 
 - TODO: I don't really know what OData is trying to achieve? Standardised REST?
 - https://learn.microsoft.com/en-us/odata/webapi-8/getting-started?tabs=net60%2Cvisual-studio-2022%2Cvisual-studio
+
+### Logging
+
+- Specify in `appsettings.{Environment}.json`
+- [Cloud telemetry in Azure](https://learn.microsoft.com/en-us/aspnet/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry)
