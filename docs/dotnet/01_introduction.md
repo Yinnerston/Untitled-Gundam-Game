@@ -60,10 +60,11 @@ Multiple paradigms can be combined within a single application
 
 ### Versioning of .NET
 
-- I'm using .NET 6.0
+- ~~I'm using .NET 6.0~~ I've chosen .NET 7.0
 - Features in .NET 7.0 that make me consider migrating
   - Output caching middleware (no redis!)
   - Rate limiting middleware
+  - JSON support in EF Core 7.0
 - .Net Framework
   - ASP.NET Web Forms --> Tied to old System.Web.dll and IIS, so not available on ASP.NET Core
     - Can reploace with blazor server which is similar to web forms application model

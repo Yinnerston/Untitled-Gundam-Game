@@ -12,6 +12,12 @@ What is the async model in c#? Any quirks I need to know?
 
 Decorators in c#?
 
+```csharp
+public TodoContext(DbContextOptions<TodoContext> options)
+    : base(options)
+```
+- What does the `: base(options)` syntax represent?
+
 Attributes: `[DataAttribute]` syntax using a annotation enclosed in `[` and `]` square brackets
 - E.G. `[SerializeField]` exposes the serializable field in the Unity Editor? 
 - Used to associate metadata or declarative information with code.
@@ -29,6 +35,11 @@ Lambdas
 LINQ
 
 Null Coalescing operator / Nullable Reference Types
+- [What does a `= null!;` assignment represent?](https://stackoverflow.com/questions/54724304/what-does-null-statement-mean)
+- This is the null forgiving operator --> `null!` applies the `!` operator to the value null
+  - Overrides nullability of `null` --> Tells compiler `null` is a non-null type
+  - This allows null to be safely accessed
+  - WARNING: This operator negates the compiler check for null safety. We shouldn't use it in our code.
 
 Code Generators
 - Source Generators

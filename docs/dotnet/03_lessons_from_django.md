@@ -73,14 +73,70 @@ SQL Server Object Explorer (SSOX):
 - LINQ queries are lazily evaluated
 - Can construct lambda expressions on LINQ queries such as conditional filters
 
+How to relate the  following to transactions?
+- Db Context:
+- EntityState
+- `context.Entry(...).State`
+
 **Atomic Operations**
 
 We need to ensure atomic database operations to prevent race conditions
+
+Pessimistic concurrency: Use database locks to prevent concurrency conflicts
+- con: Complex to implement, performance degrades as users increase
+Optimistic concurrency: Allows concurrency conflicts to happen, then reacts to rectify them
+- Types of error recovery include:
+  - Store-Wins scenario: Data store values take precendence and user is given an error on conflict
+  - Client-Wins / Last-In-Wins: Final write overwrites the preceeding writes
+  - Managing state for each transaction and db column: Unpractical to implement due to requirement of managing too much state
+- How are conflicts detected?
+  - [Concurrency token](https://learn.microsoft.com/en-us/ef/core/saving/concurrency?tabs=data-annotations): Property that tracks queries and emits a conflict on update or delete during `SaveChanges()`
+    - Operation can complete if the values match, otherwise throw a `DbUpdateConcurrencyException`
+- 
 
 [**Database transactions**](https://learn.microsoft.com/en-us/ef/core/saving/transactions)
 
 Atomic workflow using Optimistic Concurrency:
 - https://stackoverflow.com/a/17976819
+
+Async Methods:
+- Async methods are the default for .NET Core and EF Core
+  - Database action statements are executed asynchronously (not the lazily evaluated operations)
+  - EF Core context is not thread safe
+  - Verify library packages use async if they call EF Core methods that send queries to the db
+
+
+### Entity Framework
+
+I am putting model attribute conditions in [the models section of the MVC WebAPI page](./04_mvc_webapi.md#models)
+
+Entity Framework Core is an ORM for the .NET Core ecosystem
+- Use cases include:
+  - Handling network connections and intermediate data
+  - Generates SQL and maps data back to POCO (plain old CLR object)
+  - Abstraction to allow LINQ queries to work on databases
+
+Ideas in EF Core:
+- Entity: .NET class mapped by EF core to the database
+- Database Context: `DbContext` used to configure EF core and access the database at runtime
+  - Can have multiple `DbContext`(s) and integrate with different databases in one application
+- `DbSet` properties on the `DbContext` are added to the internal model --> Presents the collection of all entities in the context
+  - So you don't have to manually add every entity to the model using `DbSet` as it finds them based on relationships between entities. However, it's best practice to expose a DbSet for each entity if you want to query on them.
+
+- Visual studio makes creating CRUD APIs very easy. Just define a model then create a scaffold item to controller
+  - Default CRUD create scaffold is vulnerable to overposting (changing form inputs to post to fields that should not be updated)
+  - Use [`TryUpdateModelAsync`](https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/crud?view=aspnetcore-7.0#tryupdatemodelasync) to stop overposting on Edit
+  - In MVC --> `Bind` attribute prevents overposting on create by limiting postable fields
+    - Note that BIND clears out existing fields that are not bound, so the `TryUpdateModel` --> `SaveChanges` method is recommended for edits
+
+Entity States: What records should be updated on `SaveChanges()`
+- `Added` state: Mapped to INSERT
+- `Unchanged` state: starting state
+- `Modified` state: Mapped to UPDATE
+- `Deleted` state: Mapped to DELETE
+- `Detached` state: Isn't tracked by db context
+
+![EF Core Internal Model](imgs/ef-core-internal-model.PNG)
 
 ### Authentication
 
@@ -121,3 +177,13 @@ Plan is to currently add it in the [docs repository](https://github.com/Yinnerst
 ### Security
 
 - TODO:
+
+### OData and REST API spec
+
+- TODO: I don't really know what OData is trying to achieve? Standardised REST?
+- https://learn.microsoft.com/en-us/odata/webapi-8/getting-started?tabs=net60%2Cvisual-studio-2022%2Cvisual-studio
+
+### Logging
+
+- Specify in `appsettings.{Environment}.json`
+- [Cloud telemetry in Azure](https://learn.microsoft.com/en-us/aspnet/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry)
