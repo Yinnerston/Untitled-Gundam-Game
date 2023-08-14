@@ -54,6 +54,20 @@ Nodes: Javascript object is created by the browser for each element and section 
   - Note: with JS, don't reference elements before they are created --> put scripts at the bottom of the `<body>` element if they reference other elements.
   - JS elements are render-blocking, and the browser stops downloading all assets when scripts are downloaded and doesn't resume until execution has completed
     - Can modify this behaviour with `defer` and `async`
+- `<link>`: Link to fragment, url or downloadable resource
+  - Download with `href="blob:downloadUrl" download="outputFilename"`
+  - `target` attribute: 
+    - `_self`: open link in current window
+    - `_parent`: link nested in a parent object or iframe
+    - `_blank`: open link in new tab
+    - `_top`: top most ancestor
+  - Can track link clicks using the `ping` attribute to ping a url on click
+  - Tips for using Links
+    - Provide enough information about the linked resource so the user knows what they're clicking on
+    - Ensure links are different from regular text
+    - use focus styles to enable keyboard navigators to know where they are when tabbing
+    - Content between opening `<a>` and closing `</a>` is the default accessible name
+    - Interactive content should not go in links (bad UX when loading)
 
 ### Metadata
 
@@ -101,3 +115,12 @@ Boolean, enumerated and global attributes
   - `role`: Part of ARIA spec covered earlier
   - `contenteditable`
 - Custom Attributes: Create custom attributes by adding the `data-` prefix
+
+### Text
+
+Use `aria-labelledby` to turn headings into `region`s for accessibility
+Quotes and citations: Use `<blockquote>`, `<q>` and `<cite>`
+- `cite` attribute that is not readable to the user
+HTML Entities: There are four reserved entities in HTML: `<, >, &, and "`. Their character references are `&lt;, &gt;, &amp; and &quot;` respectively.
+- Symbols like &copy; and &trade;  are useful
+
