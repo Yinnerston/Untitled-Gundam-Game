@@ -83,3 +83,21 @@ Landmarks: `<header>`, `<nav>`, `<main>`, `<aside>`, `<section>`, `<footer>`
   - Best to put your title, logo and main navigation here
 - `<nav>`: identifies content as navigation
 ![Document Structure](./img/document-structure.png)
+
+### Attributes
+
+Boolean, enumerated and global attributes
+- Global attributes:
+  - `id`: Unique identifier that:
+    - Target of a link's fragment identifier (goto fragment in page denoted by #id)
+    - Identify an element for scripting `document.getElementById`
+    - Associate a form element with its label using the `for` attribute
+    - Providing a label or description for assistive technologies
+    - Targetting styles in CSS (attribute selector)
+  - `class`: Additional way of targetting elements with CSS and JS, but is not used by HTML
+  - `aria-*`: Accessibility properties
+  - `style`: style
+  - `tabindex`: Recieve focus via tab key press
+  - `role`: Part of ARIA spec covered earlier
+  - `contenteditable`
+- Custom Attributes: Create custom attributes by adding the `data-` prefix
