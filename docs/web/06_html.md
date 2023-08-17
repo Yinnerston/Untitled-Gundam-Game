@@ -124,3 +124,27 @@ Quotes and citations: Use `<blockquote>`, `<q>` and `<cite>`
 HTML Entities: There are four reserved entities in HTML: `<, >, &, and "`. Their character references are `&lt;, &gt;, &amp; and &quot;` respectively.
 - Symbols like &copy; and &trade;  are useful
 
+### Navigation
+
+- `<nav>` element: Informs navigation block
+- Skip Link: Skip to the main content of the site when hitting tab
+  - Hide content in the non-focused and non-active state using the selector `.visually-hidden:not(:focus):not(:active)`
+  - Link text should be "skip to main" as the accessible name
+- Table of contents: Make sure to wrap these lists in a `<nav>` element with an `aria-labelledby` attribute description
+- Breadcrumbs: Provides links to each previous page a user has navigated through
+  - E.G. `Home  / Learn / HTML  / Navigation` at the top of the page
+  - `aria-label="breadcrumbs"` attribute in nav
+  - Use landmark `role="list"` attribute in list
+  - Don't link to the current page (bad UX for refresh) --> Denote using `aria-current="page"` attribute
+- Global Navigation: The global header that links to other top-level paths of the site
+  - Appears as the same nav on every page with `aria-current="page"` on any links to the current page 
+  - `position="fixed"` to affix to the top of the page
+
+### Conditional Rendering
+
+- e.g. Render on custom attribute `data-complete` otherwise `display: none`
+```css
+.course .stack-nav a:not([data-complete="true"]) svg {
+  display: none;
+}
+```
