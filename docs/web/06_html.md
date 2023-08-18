@@ -12,14 +12,17 @@ https://web.dev/learn/html/overview/
 
 **Elements**: Content nested between the opening and closing tags
  - Tag name is the content in the brackets
+
 Types of elements:
 - Non-Replaced: Have opening and optional closing tags that surround them. May include text, other tags as sub-elements
 - Replaced: Can be replaced by options (such as a UI widget), image file or raster.
 - Void element: Self closing tags, often denoted by `<tag />`
   - Most replaced elements are void elements but not all
+
 Tags have attributes which define the behaviour, linkage and functionality of elements
 - Most attributes are name/value pairs
 - XHTML style markup: Style to use lowercase letters for all element and attribute names, self-closing empty elements  
+
 Default appearance of semantic elements is set by user-agent stylesheets
 - Semantic means "relating to meaning"
 - Semantics of an element is important for search engines and assistive technologies
@@ -28,6 +31,7 @@ Default appearance of semantic elements is set by user-agent stylesheets
 ### Document Object Model (DOM)
 
 Nodes: Javascript object is created by the browser for each element and section of text encountered
+
 [HTML DOM API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API): Access and control each HTML element via the DOM 
 - HTMLElement interface: represents HTML element and all descendent nodes
 
@@ -91,6 +95,7 @@ Using the correct HTML elements for your content
 - `role` attribute: describes the role of an element in the context of the document
   - Semantic elements have implicit roles (such as header, main, footer as landmarks)
   - Role names are used to build the AOM
+
 Landmarks: `<header>`, `<nav>`, `<main>`, `<aside>`, `<section>`, `<footer>`
 - Use landmarks over roles or divs which improves the clarity of the document structure 
 - `<header>`: has the banner role if the header is top-level otherwise a section header
@@ -119,8 +124,10 @@ Boolean, enumerated and global attributes
 ### Text
 
 Use `aria-labelledby` to turn headings into `region`s for accessibility
+
 Quotes and citations: Use `<blockquote>`, `<q>` and `<cite>`
 - `cite` attribute that is not readable to the user
+
 HTML Entities: There are four reserved entities in HTML: `<, >, &, and "`. Their character references are `&lt;, &gt;, &amp; and &quot;` respectively.
 - Symbols like &copy; and &trade;  are useful
 
@@ -138,7 +145,7 @@ HTML Entities: There are four reserved entities in HTML: `<, >, &, and "`. Their
   - Don't link to the current page (bad UX for refresh) --> Denote using `aria-current="page"` attribute
 - Global Navigation: The global header that links to other top-level paths of the site
   - Appears as the same nav on every page with `aria-current="page"` on any links to the current page 
-  - `position="fixed"` to affix to the top of the page
+  - `position="fixed"` to affix to the top of the page (what about `position: "sticky"`?)
 
 ### Conditional Rendering
 
@@ -148,3 +155,57 @@ HTML Entities: There are four reserved entities in HTML: `<, >, &, and "`. Their
   display: none;
 }
 ```
+
+### Tables
+
+Use tables for data that is being presented, compared, sorted, calculated or cross-referenced. Tables have a semantic meaning used by assistive technology for the aforementioned type of data.
+- Alternative is to use lists styled with CSS; such as a grid of images if you want a neat layout
+  - Grid layout without data requiring tables: Use CSS grid
+  - Content in columns: Use multi-column layout 
+- [Interactive slide deck explaining table elements](https://estelle.github.io/CSS/tables)
+- Include aria `role` attributes when changing the CSS display property for table elements
+
+Table elements
+- `<thead>` Table head, `<tbody>` Table body and `<tfoot>` table footer
+- `<caption>` captions are the preferred way of giving a name to a table
+- `<colgroup>` `<col>` or `<tr>` `<th>` `<td>`
+  
+Apply styles to entire columns
+- `<colgroup>` Defines groups of columns
+  - `<col>` grouped by `<colgroup>`
+
+Define and style individual rows, header cells and data cells
+- Each table row `<tr>` contains one or more cells
+- Cell headers use `<th>`, otherwise use `<td>`
+  - `<th>` Header table cell: Use `scope="col/row"` attribute for accessibility
+- `colspan` / `rowspan` attribute: use to merge adjacent cells
+
+Example table usage
+<table>
+  <caption>MLW Alumni</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Destiny</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Hal Gibrah</th>
+      <td>Calculator</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>Cathy Terr</th>
+      <td>Waste disposal</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>Lou Minious</th>
+      <td>Lightbulb</td>
+      <td>1956</td>
+    </tr>
+  </tbody>
+</table>
+
