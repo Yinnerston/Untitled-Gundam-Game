@@ -164,6 +164,7 @@ Use tables for data that is being presented, compared, sorted, calculated or cro
   - Content in columns: Use multi-column layout 
 - [Interactive slide deck explaining table elements](https://estelle.github.io/CSS/tables)
 - Include aria `role` attributes when changing the CSS display property for table elements
+  - Specify the `aria-sort` attribute in HTML if table column is sortable
 
 Table elements
 - `<thead>` Table head, `<tbody>` Table body and `<tfoot>` table footer
@@ -209,3 +210,34 @@ Example table usage
   </tbody>
 </table>
 
+### Images
+
+- Should contain a `src` and `alt` attribute at a minimum
+  - Alt descriptions should be short, assuming you are describing the image to somebody who cannot see it (using a screen reader)
+- Responsive Images: Use `srcset` attribute to include multiple image sources with associated media queries
+  - Provides multiple version based on resolution, sizes attribute and the browser viewport size
+  - `<picture>` element: Equivalent to defining `srcset`. Define sources with multiple `<source>` elements
+- Set the `height` and `width` to avoid content layout shifts
+  - These attributes will be overriden with CSS if setup correctly, however setting these attributes reserrves the space at the right aspect ratio and thus stops layout shifts 
+- Lazy loading with the `lazy` attribute
+
+### Audio and Video
+
+`<video>` Element:
+- Elements to include inside the opening and closing tags
+  - Fallback content for what is loaded when the video fails
+  - `<soruce>` Different sources can be specified (different media formats such as webm / ogg)
+    - Formats specified by codecs parameter in `type` attribute of `source` element
+  - `<tracks>` defines captions tracks for subtitles in [`WebVTT` format](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API)
+    - `kind` attribute --> Specify "subtitles", "description" or "caption"
+    - "caption" value should be reserved for transcription with sound effects and other relevant audio information
+    - Specify `srclang` attribute with "subtitles"
+    - "description" is for textual descriptions of the visual content
+  - `<poster>` element: Image displayed as a still shot before the video is played
+- Make sure to define the aspect ratio in HTML to avoid reflows & repaints (specify height and width)
+- Background video: Typically use `autoplay loop muted role="none"` attributes in video as these are not accessible (purely decorative videos)
+  - Can improve performance by removing audio track from media sources
+- `control` attribute adds media controls
+  - Can override the browser's media controls
+
+`<audio>` Element : Best for audio only
