@@ -241,3 +241,64 @@ Example table usage
   - Can override the browser's media controls
 
 `<audio>` Element : Best for audio only
+
+### Templates, Slot and Shadow
+
+Web Component standard: Use HTML templates, custom elements and the shadow DOM to build customized, encapsulated and reusable elements in HTML/JS
+- HTML Templates: `<template>` element used to declare fragments of HTML to be cloned and inserted into the DOM using Javascript
+  - Contents of `<template>` are not written to the screen
+  - `<slot>` Element allows you to inject your own markup into a template dynamically. Content inside the template will be distributed to the corresponding slot based on the slot names
+  - The element within `<slot>` will be replaced by the element matching the slot name if specified
+
+```html
+<template id="star-rating-template">
+  <form>
+    <fieldset>
+      <slot name="star-rating-legend">
+        <legend>Rate your experience:</legend>
+      </slot>
+  ...
+  <star-rating-template>
+    <star-rating-legend> ...replacement here </star-rating-legend>
+  </star-rating-template>
+```
+- [Custom Elements](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements): The process you register a defined HTML element with the browser
+  - Used to define new HTML elements with custom behaviour with JS
+  - Register with [CustomElementRegistry.define()](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define)
+    - Requires name string, class that defines the behaviour, and optionally the parent class of the new element
+  - These are NOT replacements for Javascript component frameworks (think React components)
+  - [Best practices for custom elements](https://web.dev/custom-elements-best-practices/)
+- Shadow DOM: Allows hidden DOM trees to be attached to elements in the regular DOM tree
+  - CSS rules scoped to the regular DOM do not apply to the shadow DOM
+  - Shadow boundary: Boundary where the shadow DOM ends and the regular DOM begins
+  - Shadow DOM elements in a template can be edited with CSS using the `part` attribute from the global scope
+
+Example Web Component
+- Note: the `<rating>` element is undefined.
+- Undefined Elements: Treated by the browser as anonymous inline elements that can be styled with css
+
+```html
+ <template id="star-rating-template">
+   <form>
+  <fieldset>
+    <legend>Rate your experience:</legend>
+     <rating>
+       <input type="radio" name="rating" value="1" aria-label="1 star" required/>
+       <input type="radio" name="rating" value="2" aria-label="2 stars"/>
+       <input type="radio" name="rating" value="3" aria-label="3 stars"/>
+       <input type="radio" name="rating" value="4" aria-label="4 stars"/>
+       <input type="radio" name="rating" value="5" aria-label="5 stars"/>
+     </rating>
+    </fieldset>
+    <button type="reset">Reset</button>
+    <button type="submit">Submit</button>
+</form>
+</template>
+```
+
+Template defined can be drawn on the screen using the following JS by appending the contents of the `<template>` into the `<body>` 
+
+```js
+let starRating = document.getElementById("star-rating-template").content;
+document.body.appendChild(starRating);
+```
