@@ -302,3 +302,22 @@ Template defined can be drawn on the screen using the following JS by appending 
 let starRating = document.getElementById("star-rating-template").content;
 document.body.appendChild(starRating);
 ```
+
+### HTML APIs
+
+What are HTML APIS? Manipulating the DOM using Javascript.
+
+Example uses include:
+- Getting the attribute values of an element like "alt"
+- Getting the layout details like `HTMLElement.offsetHeight` for the height of a section in the webpage, or the orientation of a mobile user's screen
+- Getting the current UI state like mouse events or whether a video is playing
+
+Pretty much every element has an associated DOM interface
+- `Node` interface: Provides basic properties and methods inheried by all other DOM objects
+  - Use to maintain the structure of a webpage by adding, removing or rearranging elements
+- `Document` interface:  Represents entire web page and provides methods for creating, searching and manipulating elements
+  - E.G.Query then attach event listeners to button click
+- `HTMLDocument` interface: Implementation of document interface that provides additional methods for HTML documents like metadata editing or setting the title
+- `Window` interface: Represents the browser window that contains the DOM document
+  - E.G. Use for opening a new tab or popup
+- `Element` interface: Represents a single element in the DOM, use for like getting or setting attributes
