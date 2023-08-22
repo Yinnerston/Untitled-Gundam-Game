@@ -7,6 +7,54 @@ sidebar_label: "HTML"
 Reviewing HTML to make an awesome animated webpage
 
 https://web.dev/learn/html/overview/
+https://isobar-us.github.io/code-standards/
+
+### Isobar Frontend Code Standards for HTML
+
+Goals for markup
+- Maintain a clear separation o concerns, avoid in-line styles and in-line javascript whenever possible
+- Build pages as a library of components, in such a way that blocks of code can be broken up and reused when implemented
+- Use the most meaningful yet minimal markup to complete deliverables
+- Have a reference implementation that each contributor knows what sort of structures are appropriate
+  
+Before getting started:
+- Discuss the final delivery environment (mobile, desktop, etc)
+- Templates and types of pages
+- Which sections are reusable, which are managed by software vs by-hand
+- Framewords, CSS grid systems
+- Server-side delivery platforms
+
+What are the best practices?
+- Use semantic markup when possible
+- Use the latest HTML5 markup specifications from W3C
+- Include the proper doctype to trigger standards mode (`<!doctype html>` for html5)
+- Define character encoding `<meta charset="UTF-8">`
+- Use all open and closing elements nested in the correct ways to maximum compatibility and clarity of document structure
+- [Valdiate your markup](https://validator.w3.org/)
+- Use indentation appropriately
+- Use quotes to surround all attribute values in HTML, despite quotes being optional in HTML5
+- Use semantic names over descriptive names in `id` and `class` attributes
+  - E.G. "secondary-nav" is better than "left-nav"
+- All links should point to absolute or relative URLs with user-readable content. Don't link to XML or JSON designed to be AJAX'd with JS
+- Use enclosed `<p>` tags to separate paragraphs instead of `<br>`
+- Use definition lists `<dl>` to display a single record of name-value pairs
+- Only use tables for tabular data, not page layout
+- Make full use of the `<form>` tag for all sections requiring use input
+
+Next Steps:
+- Site maintenance procedures
+- Browser testing strategies
+- How new features will be added
+- Where new features will be added
+- What the file system looks like for static site assets
+- If a CDN is involved
+- Naming conventions and organization of graphics and photography assets
+- If the "back-end implementation" of static HTML templates will require review by front-end team members
+
+
+### Frontend Terminology
+
+[Polyfill](https://remysharp.com/2010/10/08/what-is-a-polyfill): Piece of JS code that provides modern functionality in older browsers that do not natively support it
 
 ### Elements
 
