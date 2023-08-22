@@ -321,3 +321,37 @@ Pretty much every element has an associated DOM interface
 - `Window` interface: Represents the browser window that contains the DOM document
   - E.G. Use for opening a new tab or popup
 - `Element` interface: Represents a single element in the DOM, use for like getting or setting attributes
+
+### Focus
+
+- `tabindex` attribute should be set so that tabbing visually moves through the page
+  - Negative value makes element focusable but not tabbable
+- `contenteditable` attribute makes the element editable, tabbable and part of the tab order
+- `disabled` attribute makes form controls unfocusable, and click events become void
+- `inert` attribute diables content and removes it from the accessibility tree 
+
+### Inline Text Elements
+
+Elements that provide text semantics for documentation
+- `<code>` element: <code>Code examples </code>
+- `<pre>` element: <pre> Preformatted text</pre>
+- `<data>` element: Machine readable translation <data>11000000</data>
+- `<time>` element: has `datetime` attribute 
+- `<sup>` and `<sub>` <sup>super</sup> and <sub>subscript</sub>
+- `<kbd>`: <kbd>Keyboard input</kbd>
+- `<dfn>`: <dfn lang="en">Definition</dfn>
+
+Text Emphasis:
+- `<em>`: <em>Emphasises span of content</em>
+- `<mark>`: <mark>Highlight text such as marking the occurrence of search terms</mark>
+- `<strong>`: <strong>Strong importance</strong>
+- `<cite>`: <cite>Citation</cite>
+- `<i>`: <i>Used for technical terms, foreign words, etc. Italicizes text</i> 
+- `<u>`: <u>Content with non-textual annotation</u>
+- `<b>`: <b>Draw attention to text with no semantic meaning</b>
+- `<ruby>` Container to hold annotations for other written languages
+
+White Space:
+- `<br>`: Carriage return <br />
+- `<hr>`: Horizontal rule used as a separator <hr></hr>
+- `<wbr>`: Optionally break text if it overflows the container
