@@ -6,7 +6,7 @@ sidebar_label: ".NET"
 
 [Textbook - ASP.NET Core in Action 3rd Edition](https://www.manning.com/books/asp-net-core-in-action-third-edition)
 
-[History of .NET Notes](../web/04_history_of_dotnet.md)
+[History of .NET Notes](../web-games/04_history_of_dotnet.md)
 
 ### What can I build with .NET Core?
 
