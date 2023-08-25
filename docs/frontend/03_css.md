@@ -5,9 +5,12 @@ sidebar_label: "CSS"
 # CSS : Cascading Style Sheets
 
 - https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS
+- https://web.dev/learn/css
 - https://reactnative.dev/docs/flexbox
 - https://maintainablecss.com/chapters/introduction/
 - W3C Spec: https://www.w3.org/Style/CSS/ --> Use to go deeper
+- https://every-layout.dev/ --> TODO: interesting book by an author of web.dev CSS
+- https://www.joshwcomeau.com/css/understanding-layout-algorithms/ --> TODO: Mental model shift on CSS
 
 CSS Games:
 - https://flexboxfroggy.com/
@@ -170,9 +173,26 @@ Comments: Use `/*` and end with `*/` to add comments
 
 ### Rules in CSS
 
+The cascade algorithm is split into 4 distinct stages.
+
+1. **Position and order of appearance**: the order of which your CSS rules appear
+2. **Specificity**: an algorithm which determines which CSS selector has the strongest match
+3. **Origin**: the order of when CSS appears and where it comes from, whether that is a browser style, CSS from a browser extension, or your authored CSS
+4. **Importance**: some CSS rules are weighted more heavily than others, especially with the !important rule type
+
+
 **Cascade Rule**: The CSS rule that appears latest in the document replace conflicting styles that appear earlier in the stylesheet
 
 **Specificity Rule**: There is an order of precendence between different types of selector
+- This rule uses a point system by adding all the selectors together. So, if you combine multiple selectors such as `a.my-class.another-class[href]:hover`, it will be really hard to overwrite this with other CSS (solution: KISS! Use simple CSS rules when possible)
+- Specificity selectors order (lowest to highest points)
+  - Universal selector: 0 points
+  - Elements, pseudo-element selectors: 1 point
+  - Class, pseudo-class or attribute selector: 10 points
+  - ID selector: 100 points
+  - Inline Style attribute: 1000 points
+  - `!important` rule: 10000 points
+- E.G. `a[href="#]` is worth 11 points (1 from `a` element selector + 10 from `href` attribute selector)
 
 | Specificity Category | Description | Example |
 |---|---|---|
@@ -180,6 +200,9 @@ Comments: Use `/*` and end with `*/` to add comments
 | IDs | Selectors using the ID of an element. | `#someId` |
 | Classes, Attributes & Pseudo-classes | Selectors based on class, attribute or pseudo-class. | `.someClass`, `[type="text"]`, `:hover` |
 | Elements & Pseudo-elements | Selectors based on element name or pseudo-element. | `h1`, `::before` |
+
+How do I verify my CSS rules are working as intended?
+- Use your browser DevTools (rule will be crossed out if it waas overridden)
 
 `@rules`: Provide instruction for what CSS should perform or how it should behave
 - `@import`: imports another stylesheet into your stylesheet
@@ -214,4 +237,14 @@ E.G. Define a blue background if the browser viewport is wider than `30em`
   transform: rotate(0.8turn);
 }
 ```
+### CSS Inheritance
+
+CSS inherits rules (rules cascade down)
+- every HTML element has every CSS property defined by a default value
+- If the parent HTML element has a inheritable CSS property set, the children will inherit the property's values
+
+How do you explicitly inherit and control inheritance?
+-  `inherit` keyword to inherit rules from parent elements
+- `initial`: Reset to default value
+- `unset`: If the property is inheritable this is the same as `inherit`, otherwise equalt o `initial`. Useful because some properties are not inheritable
 
