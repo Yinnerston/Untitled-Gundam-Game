@@ -7,8 +7,10 @@ sidebar_label: "WebGL"
 
 [OpenGl ES 3.0 Programming Guide](https://opengles-book.com/) guide book for learning OpenGL
 
-Good supplementary WebGL tutorial [Andrew Adamson WebGL Tutorials](https://www.youtube.com/watch?v=-T6EbWCq99c&list=PLPbmjY2NVO_X1U1JzLxLDdRn4NmtxyQQo)
-- [Supplementary github page](https://github.com/scriptfoundry/WebGL2-Videos-Materials)
+Good supplementary WebGL tutorial(s)
+- [Andrew Adamson WebGL Tutorials](https://www.youtube.com/watch?v=-T6EbWCq99c&list=PLPbmjY2NVO_X1U1JzLxLDdRn4NmtxyQQo)
+  - [Supplementary github page](https://github.com/scriptfoundry/WebGL2-Videos-Materials)
+- [WebGL2Fundamentals.org](https://webgl2fundamentals.org/)
 
 ### Fundamentals
 
