@@ -248,3 +248,17 @@ How do you explicitly inherit and control inheritance?
 - `initial`: Reset to default value
 - `unset`: If the property is inheritable this is the same as `inherit`, otherwise equalt o `initial`. Useful because some properties are not inheritable
 
+### Colours (color property)
+
+Colour codes are a hexadecimal `#XXXXXX` or `#XXXXXXXX` (last two hex values are opacity with 8 length hex string)
+
+Define RBG colours with `rgb()` color function
+- Can use [0, 255] or [0%, 100%]
+- Add alpha channel with `rgba()`
+
+HSL: Hue, Saturation, Lightness with `hsl()` function
+- Can use [0deg, 360deg] or [0%, 100%]
+
+![HSL chart](./img/hsl.svg)
+
+Colours can also have [keywords](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#color_keywords) such as `rebeccapurple`
