@@ -54,32 +54,43 @@ Controlling the box model:
 
 Example CSS rulesets:
 ```css
+/* element selector */
 h1 {
   color: red;
   font-size: 5em;
 }
-
+/* class selector */
 .exampleClassName  {
   color: blue;
 }
 
+/* id selector */
 #idSelectorName {
   color: green;
 }
 
+/* attribute selector */
+[data-type='primary'] {
+  color: red;
+}
+
+/* descendant combinator */
 li p  {
   color: green;
 }
 
+/* adjacent sibling combinator */
 h1 + p {
   font-size: 200%;
 }
 ```
 - **Selector**: Rules open with selctors that select the HTML element to style (`h1` in the example)
-  - In the example above, we use an element selector (selects all `h1` elements)
+  - In the example above, we use an element/type selector (selects all `h1` elements)
   - The class selector uses a `.` on the class attribute specified in HTML
   - The id selector uses a `#` on the id attribute specified in HTML
   - Can combine the selectors such as `h1.className` which selects all `h1` elements with the class attribute "className"
+  - Instruct CSS to look for attributes by wrapping the selector with square brackets `[ ]`.
+    - Not including a value in the CSS rule looks for all elements containing that particular attribute regardless of value
 - `{}` curly braces enclose the declarations
 - **Declarations**: **Property** and **value** pairs
   - Property: Human readable identifyer indicating styling features
@@ -98,8 +109,57 @@ a:link {
 a:visited {
   color: pink;
 }
+
+/* Your list will now either have red dots, or red numbers */
+li::marker {
+  color: red;
+}
+
+/* Style content highlighted by the user */
+::selection {
+  background: black;
+  color: white;
+}
 ```
-- Use the `:` symbol to target styles based on the state of an element
+- **Psuedo-classes**: Use the `:` symbol to target styles based on the state of an element
+- **Pseudo-element**: keyword added to a selector that lets you style a specific part of the selected element using the `::` symbol
+
+CSS Matching:
+- Apply regex rules to matching
+- Use grouping selectors to group multiple selectors together
+
+```css
+/* Case insensitive attribute selector */
+[data-type='primary' s] {
+  color: red;
+}
+
+/* A href that contains "example.com" */
+[href*='example.com'] {
+  color: red;
+}
+
+/* A href that starts with https */
+[href^='https'] {
+  color: green;
+}
+
+/* A href that ends with .com */
+[href$='.com'] {
+  color: blue;
+}
+
+/* Grouping selector applies a rule to all the following selectors */
+strong,
+em,
+.my-class,
+[lang] {
+  color: red;
+}
+
+/* Universal selector */
+* {}
+```
 
 How to add CSS:
 - Link styles.css in the `<head>` element using `<link rel="stylesheet" href="styles.css" />`
@@ -107,10 +167,6 @@ How to add CSS:
 - Inline styles: Use style attribute such as `style="..."` (bad practice same as internal stylesheets)
 
 Comments: Use `/*` and end with `*/` to add comments
-```css
-/* This is a comment.
-*/
-```
 
 ### Rules in CSS
 
