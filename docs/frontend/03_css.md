@@ -52,7 +52,7 @@ Controlling the box model:
 
 ### CSS Syntax:
 
-Example CSS:
+Example CSS rulesets:
 ```css
 h1 {
   color: red;
@@ -82,7 +82,8 @@ h1 + p {
   - Can combine the selectors such as `h1.className` which selects all `h1` elements with the class attribute "className"
 - `{}` curly braces enclose the declarations
 - **Declarations**: **Property** and **value** pairs
-  - Property: Different allowable values based
+  - Property: Human readable identifyer indicating styling features
+  - Value: Value of the property indicating the style
 - **descendant combinator**: Spaces between the selectors denote selection based on nesting. So you can style things based on their location in a document
   - In the example, `li p` selects all `p` elements that is a descendent of a `li` element
 - **adjacent sibling combinator**: Use the `+` symbol to style elements that come directly after another
@@ -100,8 +101,61 @@ a:visited {
 ```
 - Use the `:` symbol to target styles based on the state of an element
 
-
 How to add CSS:
 - Link styles.css in the `<head>` element using `<link rel="stylesheet" href="styles.css" />`
-- Add `<style>` element (bad practice as can lead to inconsistencies imports, better to keep everything on a stylesheet)
+- Internal stylesheet: Add `<style>` element (bad practice as can lead to inconsistencies imports, better to keep everything on a stylesheet)
+- Inline styles: Use style attribute such as `style="..."` (bad practice same as internal stylesheets)
+
+Comments: Use `/*` and end with `*/` to add comments
+```css
+/* This is a comment.
+*/
+```
+
+### Rules in CSS
+
+**Cascade Rule**: The CSS rule that appears latest in the document replace conflicting styles that appear earlier in the stylesheet
+
+**Specificity Rule**: There is an order of precendence between different types of selector
+
+| Specificity Category | Description | Example |
+|---|---|---|
+| Inline Styles | Styles directly on the element using the `style` attribute. | `<div style="...">` |
+| IDs | Selectors using the ID of an element. | `#someId` |
+| Classes, Attributes & Pseudo-classes | Selectors based on class, attribute or pseudo-class. | `.someClass`, `[type="text"]`, `:hover` |
+| Elements & Pseudo-elements | Selectors based on element name or pseudo-element. | `h1`, `::before` |
+
+`@rules`: Provide instruction for what CSS should perform or how it should behave
+- `@import`: imports another stylesheet into your stylesheet
+- `@media`: Create media queries that use conditional logic for applying CSS styles
+
+E.G. Define a blue background if the browser viewport is wider than `30em`
+```css
+@media (min-width: 30em) {
+  body {
+    background-color: blue;
+  }
+}
+```
+
+### Functions in CSS
+
+`calc`: Do simple math
+```css
+.box {
+  width: calc(90% - 30px);
+}
+```
+
+`transform` functions: Apply transformations to elements
+- Values of the attribute `transform`
+```css
+.box {
+  margin: 30px;
+  width: 100px;
+  height: 100px;
+  background-color: rebeccapurple;
+  transform: rotate(0.8turn);
+}
+```
 
