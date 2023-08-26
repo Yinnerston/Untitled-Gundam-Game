@@ -324,8 +324,9 @@ Flexbox & Grid: Two different layout mechanisms that create layout rules for mul
 ### Flexbox Layout
 
 Useful notes
-- https://reactnative.dev/docs/flexbox
 - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+  - TODO: Add the helpful images on properties like `justify-content` to this doc.
+- https://reactnative.dev/docs/flexbox
 
 **What problem does a Flexbox Layout solve?**
 
@@ -344,12 +345,12 @@ Flexbox is a layout mechanism for one-dimensional layouts.
 - `align-items` describes how to align children within the **cross axis** of their container.
 - Items stay on the same axis
 
-What is `flex-wrap`?
+**What is `flex-wrap`?**
 
 Flexbox doesn't wrap items unless you specify it (single line by default). `flex-wrap` will cause items to be wrapped into multiple lines along the main axis if required. 
 - `wrap` or `nowrap` default.
 
-Flexbox shortcuts:
+**Flexbox shortcuts:**
 - `flex:` can take up to three arguments `flex-grow flex-shrink flex-basis`. Recommended you use this shorthand instead of setting each individual property
   - Initial values are:
   - `flex-grow: 0`: Items do not grow --> Proportion of space in the flexbox the item takes up
@@ -360,11 +361,138 @@ Flexbox shortcuts:
 
 ### Grid Layout
 
-What problem does a Grid Layout solve?
+Useful notes
+- https://css-tricks.com/snippets/css/complete-guide-grid/
+  - TODO: Add the images on properties like
 
-What is a Grid layout?
+**What problem does a Grid Layout solve?**
+
+Any two-dimensional grid-based layout system! An example would be the Header, sidebar, content and footer layouts on a page.
+
+![Grid Layout Example](./img/grid-layout.svg)
+
+**What is a Grid layout?**
 
 Grid is similar to flexbox but designed to control multi-access layouts. Grid gives you precise control of items in two dimensions
+
+Defined by `display: grid` on the container.
+
+**Important CSS Grid terminology**:
+- Grid container: Element on which `display: grid` is aplied. Direct parent of all grid items
+- Grid item: Descendent of grid container
+- Grid line: Dividing line that makes up the structure of the grid.
+- Grid cell: a single “unit” of the grid
+- Grid track: Space between two lines --> A whole row or column of grid cells
+- Grid area: Total space surrounded by four grid lines. An rectangular area inside the grid of units
+
+**Grid Container properties**:
+- `display: grid` : how you define the element as a container
+- `grid-template-columns` / `grid-template-rows`: Define the columns and rows of the grid with a space separated list of values. Values represent track size, and space between them represents the grid line
+  - You can name grid lines
+  - track size: Accept values are `%`, length or `fr` fraction of the free space
+    - `fr` works the same as a flex unit
+  - Intrinsic sizing keywords: keywords designed in box sizing spec to add additional ways of sizing boxes in CSS
+    - `min-content`: Make track as small as possible without overflow
+      - longest word or image
+    - `max-content`: Make track wide enough to display in one unbroken string (causes overflow if wrap is not enabled)
+      - longest sentence or biggest image
+    - `fit-content()`: max-content but wraps once it passes the passed in threshold
+  - `minmax()` Set min and max size of a track
+  - `repeat()`: Use to repeat any section of your track listing
+    - `auto-fill`: auto-fill FILLS the row with as many columns as it can fit. These cell may be empty / not defined in HTML!
+    - `auto-fit` fits the AVAILABLE cells to the space.
+    - Use `repeat(auto-fill, 200px);` or `repeat(auto-fit, 200px);` to **repeat as many fixed-length grid cells as will fit** in the track
+    - If there is a <200px gap due to viewport size, it will not be filled. Add `minmax(*, 1fr)` such as `repeat(auto-fill, minmax(200px, 1fr));` to divy the remaining area between the cells
+
+Example grid:
+```css
+.container {
+    display: grid;
+    grid-template-columns:
+      [main-start aside-start] 1fr
+      [aside-end content-start] 2fr
+      [content-end main-end]; /* a two column layout */
+}
+
+.sidebar {
+    grid-column: aside-start / aside-end;
+    /* placed between line 1 and 2*/
+}
+
+footer {
+    grid-column: main-start / main-end;
+    /* right across the layout from line 1 to line 3*/
+}
+```
+
+**Auto-placement: How to control the placement of items in a grid**
+- `grid-auto-flow` controls whether the placement is in rows or columns
+- `writing-mode` is for other languages basically (think japanese with vertical characters or arabic rtl)
+- `grid-column-end` / `grid-row-end`: Cause elements to span multiple tracks using the `span` keyword on an item
+  - Can specify the `grid-column-start` / `grid-row-start`
+  - Values are the starting / ending lines (can double check lines with devTools)
+  - Use shorthands `grid-column` / `grid-row` for the start / end
+
+**Placing items**
+- Stack items using `z-index`
+- Explicit Grid: Grid explicitly defined by css properties like `grid-template-rows`
+- Implicit Grid: the browser automatically creates the necessary tracks when items are placed outside the explicitly defined grid (e.g. too many grid items overflows the grid)
+  - Use `grid-auto-rows` / `grid-auto-columns` to size implicit rows/columns
+- Negative numbers: Using negative line numbers you can place items from the end line of the explicit grid. 
+  - E.G. Sidebar spanning entire column track (first to last column line) using `grid-column: 1 / -1`
+  - However, if there is an implicit grid (too many elements overflows the grid), then the sidebar will not span the implicit grid
+
+**Grid Template Areas**: Name areas of the grid and place items into the named areas
+- use the `grid-area` property to give direct children a name
+- Use the `grid-template-areas` property to define which grid cells each item will span
+  - No empty cells allowed
+  - Span tracks by repeating the name
+  - Areas created must be rectangular and not disconnected
+  - `.` for whitespace
+- Why? If the entire layout is defined in one place, it's much easier to understand
+
+Example using the `grid-template-areas` property
+```css
+header {
+    grid-area: header;
+}
+.sidebar {
+    grid-area: sidebar;
+}
+.content {
+    grid-area: content;
+}
+footer {
+    grid-area: footer;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-areas:
+        "header header header header"
+        "sidebar content content content"
+        "sidebar footer footer footer";
+}
+```
+
+**Debugging the Grid:**
+- Open DevTools
+- Select `grid` badge next to grid container in the element selector
+- Goto layout tab
+
+**List of shorthand properties**
+- `grid-template`: `grid-template-rows`, `grid-template-columns` and `grid-template-areas`
+- `grid`: `grid-template-rows` `grid-template-columns` `grid-template-areas` `grid-auto-rows` `grid-auto-columns` `grid-auto-flow`
+- `grid-column` : `grid-column-start` `grid-column-end`
+  - Same for grid-row
+
+Grids use the same alignment properties as flexbox.
+- `justify-content` and `align-content`: distribute additional space in the grid container around or between tracks.
+- `justify-self` and `align-self`: are applied to a grid item to move it around inside the grid area it is placed in.
+  - This causes `background-color` to fill the grid area as they default to stretch
+- `justify-items` and `align-items`: are applied to the grid container to set all of the justify-self properties on the items.
+
 
 ### Normal Layout (Normal   Flow)
 
