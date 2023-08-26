@@ -262,3 +262,48 @@ HSL: Hue, Saturation, Lightness with `hsl()` function
 ![HSL chart](./img/hsl.svg)
 
 Colours can also have [keywords](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#color_keywords) such as `rebeccapurple`
+
+### Units in CSS
+
+`ch` unit: CSS value that allows you to control the size of text based on it's actual contextual size 
+- `ch` is based on the width of a `0` character
+
+E.G: Limiting the width of a line to 70 characters
+```css
+p {
+  font-size: 1.25rem;
+  max-width: 70ch;
+}
+```
+
+Usage of unitless numbers: For css properties like `line-height`, using unitless numbers indicates a ratio
+- Bettter to use a unitless value for properties with ratios like `line-height: 1.5` because `font-size` can be inherited and thus defining a unitless `line-height` adjusts the line height relative to the `font-size`
+- What properties use ratios when the value is a unitless number?
+  - Filter, opacity, some transform functions, etc.
+
+Usage of percentages: How are percentages calculated?
+- `width`, `margin` or `padding`: Percentage of the parent's width regardless of direction
+
+Dimensions: Attaching a unit to a number makes it a dimension.
+- Lengths are dimensions that refer to distance
+- Absolute length: Lengths revolving around a fixed base value
+  - `cm`, `mm`, `Q` (Quarter-millimeters), `in` (inches)
+  - `pc` (Pica: 1/6 of an inch)
+  - `pt` (Point: 1/72th of an inch)
+  - `px` (Pixel: 1/96th of an inch)
+- Relative Length: Lengths revolving around a resizable base value (relative lengths are like percentages)
+  - Relative to font-size:
+    - `em`: Relative to current font size
+    - `ex`: Height of the letter "x" == 0.5em 
+    - `cap`: Height of capital letters
+    - `ch`: Relative to the width of the "0"
+    - `ic`, `rem`, `lh`, `rlh`
+  - Relative to the viewport (browser window):
+    - `vw`: 1% of viewport width (use to for resizing based on viewport width)
+    - `vh`: 1% of viewport height (^ for height)
+    - `vi`, `vb`, `vmin`, `vmax`
+
+We saw angle units `deg` in HSL
+- Can also use for rotation transforms
+
+Resolution units like `dpi`: Use for serving up higher resolution images based on screen resolution
