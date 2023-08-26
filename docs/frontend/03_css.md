@@ -327,6 +327,7 @@ Useful notes
 - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
   - TODO: Add the helpful images on properties like `justify-content` to this doc.
 - https://reactnative.dev/docs/flexbox
+- https://flexboxfroggy.com/ --> Nice game for learning flexbox layouts
 
 **What problem does a Flexbox Layout solve?**
 
@@ -342,7 +343,10 @@ Flexbox is a layout mechanism for one-dimensional layouts.
   - Note: flex-direction is purely visual and setting this to `row-reverse` / `column-reverse` may have negative consequences
 - `justify-content` describes how to align children within the **main axis** of their container.
   - Align children `flex-start`, `flex-end`, `center`, `space-between`, `space-around`, `space-evenly`
+  - [justify-content property values](https://css-tricks.com/almanac/properties/j/justify-content/)
 - `align-items` describes how to align children within the **cross axis** of their container.
+  - `align-content`: determines the spacing between lines
+- `justify-self` / `align-self`: Apply to individual items
 - Items stay on the same axis
 
 **What is `flex-wrap`?**
@@ -358,6 +362,14 @@ Flexbox doesn't wrap items unless you specify it (single line by default). `flex
   - `flex-basis: auto`: Items have a base size of `auto`
 - `flex-flow` is a shorthand for combining `flex-direction` and `flex-wrap`
 - `place-content` is a shorthand for `justify-content` and `align-items`
+
+Grid garden example: Red/green frogs are together. Yellow frogs are together.
+- `flex-flow`: Sets flex-direction and wrap + wrap direction
+- `align-items`: flex-start causes frogs to hug the left border (because column-reverse flex-direction)
+- `justify-content`: centers in middle of column (because column-reverse flex-direction)
+- `align-content`: space-between causes items to be evenly distributed in the line; with the first item on the start line, and last item on the end line
+
+![Grid Garden Example 24](./img/grid-garden-24.JPG)
 
 ### Grid Layout
 
@@ -392,6 +404,7 @@ Defined by `display: grid` on the container.
   - You can name grid lines
   - track size: Accept values are `%`, length or `fr` fraction of the free space
     - `fr` works the same as a flex unit
+      - If the other units are pixels, percentages or ems, columns set with `fr` will fit the remaining space. Useful for taking up the rest of the space when you have fixed components
   - Intrinsic sizing keywords: keywords designed in box sizing spec to add additional ways of sizing boxes in CSS
     - `min-content`: Make track as small as possible without overflow
       - longest word or image
@@ -492,7 +505,7 @@ footer {
 - Goto layout tab
 
 **List of shorthand properties**
-- `grid-template`: `grid-template-rows`, `grid-template-columns` and `grid-template-areas`
+- `grid-template`: `grid-template-rows` / `grid-template-columns` / `grid-template-areas`
 - `grid`: `grid-template-rows` `grid-template-columns` `grid-template-areas` `grid-auto-rows` `grid-auto-columns` `grid-auto-flow`
 - `grid-column` : `grid-column-start` `grid-column-end`
   - Same for grid-row
