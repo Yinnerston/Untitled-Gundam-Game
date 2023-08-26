@@ -286,12 +286,12 @@ Usage of percentages: How are percentages calculated?
 
 Dimensions: Attaching a unit to a number makes it a dimension.
 - Lengths are dimensions that refer to distance
-- Absolute length: Lengths revolving around a fixed base value
+- **Absolute length**: Lengths revolving around a fixed base value
   - `cm`, `mm`, `Q` (Quarter-millimeters), `in` (inches)
   - `pc` (Pica: 1/6 of an inch)
   - `pt` (Point: 1/72th of an inch)
   - `px` (Pixel: 1/96th of an inch)
-- Relative Length: Lengths revolving around a resizable base value (relative lengths are like percentages)
+- **Relative Length**: Lengths revolving around a resizable base value (relative lengths are like percentages)
   - Relative to font-size:
     - `em`: Relative to current font size
     - `ex`: Height of the letter "x" == 0.5em 
@@ -307,3 +307,78 @@ We saw angle units `deg` in HSL
 - Can also use for rotation transforms
 
 Resolution units like `dpi`: Use for serving up higher resolution images based on screen resolution
+
+### CSS Layouts
+
+Before CSS was widely adopted in browsers, devs used HTML table elements to layout their HTML pages
+- Nowadays, `flexbox` and `grid` are used for layouts
+
+`display` property: Determines whether an element is inline or block.
+- Possible values are: `inline`, `block` or `flex`
+- **Inline elements**: Elements that sit next to each other on the same line when possible.
+- **Block elements**: Elements that create a new line for themselves. Block elements expand to the size of the available inline dimension, spans the full width in a horizontal writing mode
+- `display: flex` makes the box a block-level box, and also converts its children to flex items
+
+Flexbox & Grid: Two different layout mechanisms that create layout rules for multiple elements
+
+### Flexbox Layout
+
+Useful notes
+- https://reactnative.dev/docs/flexbox
+- https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+**What problem does a Flexbox Layout solve?**
+
+Flexbox is designed to provide a consistent layout on different screen sizes.
+
+You will normally use a combination of `flex-direction`, `align-items`, and `justify-content` to achieve the right layout.
+
+**What is a Flexbox layout?**
+
+Flexbox is a layout mechanism for one-dimensional layouts.
+- `flex` defines how your items are going to fill the available space along your mail axis
+- `flex-direction` controls the direction in which the children of the node are laid out. Sets the **main axis**. The **cross axis** is perpendicular to the main axis.
+  - Note: flex-direction is purely visual and setting this to `row-reverse` / `column-reverse` may have negative consequences
+- `justify-content` describes how to align children within the **main axis** of their container.
+  - Align children `flex-start`, `flex-end`, `center`, `space-between`, `space-around`, `space-evenly`
+- `align-items` describes how to align children within the **cross axis** of their container.
+- Items stay on the same axis
+
+What is `flex-wrap`?
+
+Flexbox doesn't wrap items unless you specify it (single line by default). `flex-wrap` will cause items to be wrapped into multiple lines along the main axis if required. 
+- `wrap` or `nowrap` default.
+
+Flexbox shortcuts:
+- `flex:` can take up to three arguments `flex-grow flex-shrink flex-basis`. Recommended you use this shorthand instead of setting each individual property
+  - Initial values are:
+  - `flex-grow: 0`: Items do not grow --> Proportion of space in the flexbox the item takes up
+  - `flex-shrink: 1`: Items can shrink smaller than their `flex-basis`
+  - `flex-basis: auto`: Items have a base size of `auto`
+- `flex-flow` is a shorthand for combining `flex-direction` and `flex-wrap`
+- `place-content` is a shorthand for `justify-content` and `align-items`
+
+### Grid Layout
+
+What problem does a Grid Layout solve?
+
+What is a Grid layout?
+
+Grid is similar to flexbox but designed to control multi-access layouts. Grid gives you precise control of items in two dimensions
+
+### Normal Layout (Normal   Flow)
+
+If grid and flexbox are not being used, your elements display in normal flow.
+- Normal Flow: Document flow is the arrangement of page elements, as defined by CSS positioning statements
+- `display: inline-block`: Respects block margin and padding but still flows inline with the text
+- `float` property: Wrap text around images with values `left`, `right` or `inherit`
+- `column-count` property in lists: Use for multicolumn layout where the content at the end of one column flows into the next column
+- `position` property: How an element is positioned in the normal flow and relative to others
+  - `relative`: positioned relative to itself and also makes it the containing block of any child elements with `position: absolute` (children repositioned relative to this element).
+  - `absolute`: breaks the element out of the current document flow
+    - Can position elements anywhere you want such as using `top`, `bottom`, `left`, `right` in it's nearest relative parent (root element is also relative) 
+    - All of the content surrounding an absolute element reflows to fill the remaining space left by that element.
+  - `fixed`: behaves in a similar way to absolute, with its parent being the root `<html>` element
+  - `sticky`: Has the fixed aspects of `fixed` and the more predictable document flow-honoring aspects of `relative`. When the viewport scrolls past the element, it stays anchored to the `top`, `bottom`, `left`, `right` values
+    - E.G. Use this for sticky sidebar elements that follow the page when scrolling
+  - `static`: Default value
