@@ -364,6 +364,7 @@ Flexbox doesn't wrap items unless you specify it (single line by default). `flex
 Useful notes
 - https://css-tricks.com/snippets/css/complete-guide-grid/
   - TODO: Add the images on properties like
+- https://cssgridgarden.com/ --> Really fun CSS grid layout game
 
 **What problem does a Grid Layout solve?**
 
@@ -430,11 +431,20 @@ footer {
 - `writing-mode` is for other languages basically (think japanese with vertical characters or arabic rtl)
 - `grid-column-end` / `grid-row-end`: Cause elements to span multiple tracks using the `span` keyword on an item
   - Can specify the `grid-column-start` / `grid-row-start`
+    - Goes from `grid-column-start` --> `grid-column-end`
+    - Either value is can be an index or a span from the other value
+    - `grid-column-end` is non-inclusive
+    - Both can have negative values
   - Values are the starting / ending lines (can double check lines with devTools)
-  - Use shorthands `grid-column` / `grid-row` for the start / end
+  - Use shorthands `grid-column`: start-col / end-col. Works with `grid-row` too
+    - `span` & negatives also works with grid-column/row
+    - `grid-area` is yet another shorthand with syntax: `grid-row-start`, `grid-column-start`, `grid-row-end`, followed by `grid-column-end`.
+
+
 
 **Placing items**
 - Stack items using `z-index`
+- Items are ordered smallest to largest [-inf, inf]. Change the `order` of items
 - Explicit Grid: Grid explicitly defined by css properties like `grid-template-rows`
 - Implicit Grid: the browser automatically creates the necessary tracks when items are placed outside the explicitly defined grid (e.g. too many grid items overflows the grid)
   - Use `grid-auto-rows` / `grid-auto-columns` to size implicit rows/columns
@@ -486,6 +496,7 @@ footer {
 - `grid`: `grid-template-rows` `grid-template-columns` `grid-template-areas` `grid-auto-rows` `grid-auto-columns` `grid-auto-flow`
 - `grid-column` : `grid-column-start` `grid-column-end`
   - Same for grid-row
+- `grid-area`: `grid-row-start` `grid-column-start` `grid-row-end` `grid-column-end`
 
 Grids use the same alignment properties as flexbox.
 - `justify-content` and `align-content`: distribute additional space in the grid container around or between tracks.
