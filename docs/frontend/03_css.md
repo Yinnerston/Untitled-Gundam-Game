@@ -11,6 +11,7 @@ sidebar_label: "CSS"
 - W3C Spec: https://www.w3.org/Style/CSS/ --> Use to go deeper
 - https://every-layout.dev/ --> TODO: interesting book by an author of web.dev CSS
 - https://www.joshwcomeau.com/css/understanding-layout-algorithms/ --> TODO: Mental model shift on CSS
+- https://web.archive.org/web/20160329134901/http://isobar-idev.github.io/code-standards/#css_css
 
 CSS Games:
 - https://flexboxfroggy.com/
@@ -27,6 +28,121 @@ I have already learnt about these things in Teaser, but I want to learn more abo
 - Flexbox
 - Grid
 - Z-Index
+
+### ISOBAR best practices
+
+**What should our CSS do?**
+- Be easily maintainable
+- Follow clear patterns to understand
+- Offer clear place for new styles going forward
+- Not a drag on performance
+- Not include unused style rules
+- Address different devices, browsers, etc. with minimal code
+
+**What should be consider when setting up CSS?**
+- What are the default styles on our supported browser(s)
+- What styles are global vs one-off
+- Distinctions for code for layout vs content
+- How the code will evolve
+- Potential impact of bug fixes
+- Use of images as CSS bg images vs inline HTML (content)
+
+**Before starting:**
+- Review the design
+- Plan around technical constraints
+- Identify how content will be managed
+- Be certain who will be able to modify the design directly via code
+- Segment the code logically
+  - Separate page grids & containers from the content
+  - Create baseline components which are extendable
+- What are baseline components?
+  - Core brand styles
+  - Basic typograph & default HTML rules
+  - Site-wide styles
+  - Distinct sections of a site
+  - Micro-sites & landing pages
+  - Components, widgets or re-usable modules
+
+Same as HTML, consider whether you really need it before adopting third party CSS components or frameworks
+
+**Establishing CSS Conventions**:
+- Keep your code consistent
+  - Formatting, Linting, naming conventions, file structure, example code, guide for component reuse
+- For large sites, don't use a single stylesheet!
+  - Can use CSS preprocessors to break style sheets into smaller and better organised files (and build process to recombine them for performance when serving)
+- Living style guides: Keep your style guide updated
+
+**CSS Best Practices**:
+- Inclusion: Use the `<link>` tag to include all stylesheets in `<head>`
+  - Don't use `@import` for best performance as this blocks page rendering until completion
+- Formatting rules:
+  - New line for each selector / declaration
+  - Single space between the opening brace `{`
+  - Lowercase for elements and shorthand hex values `#aaa`
+  - Hyphenate class selector names (avoid snake_case and camelCase)
+  - Quote attribute values in selectors
+  - Use one-level indentation for each declaration
+  - The closing brace goes in the same column as the first character of a set of rules
+  - Use a single blank line between rules
+  - Inside sets of rules:
+    - `prop: value` use a single space to separate
+    - Double quotes for quoted values
+    - Always use a semicolon at the end of the last declaration
+    - Use shorthand when possible
+    - Use `0` without units when allowed
+  - Don't indent child styles
+    - Reasons: hinders maintainability, we use indents for media queries, structure frequently changes
+- Specificity: Minimum specificity to achieve the desired style
+  - Don't use `!important` (IT'S THE NUCLEAR OPTION)
+  - `id` selector should be minimised (could use `class` instead which is a lower specificity)
+  - id selectors should be mainly used as access points for JS
+- Vendor prefixes: When using vendor prefixed features, put the standardized rule at the end to ensure browsers optimize and use the standard if they recognize it.
+- Inline styling: Don't hard code into HTML markup (pref use `.css` stylesheet)
+  - performance loss is minimal
+- Usage of `box-sizing: border-box`: TODO:
+
+**CSS Coding Patterns**: Consider what components can be standardized
+- Global defaults: Baseline HTML elements (keep these in their own baseline stylesheet)
+- Page level rules: Grids for page layout can probably go in their own file
+- Components: Related objects on a page. Can encapsulate these in distinct files by grouping them in a simple namespace like **prefix-suffix-modifier** type pattern
+  - Examples where this pattern might be useful: navbar, footer, page-info, article-date, lead, widgetfoo, byline
+- Modifiers: Extend existing components by creating distinct modifier classes with the prefix `mod` --> indicates this is a modifier and not a complete style
+  - `<div class="component-content mod-modifier-a">...</div>`
+- State: State rules will use the `is-` prefix
+  - `.component-group.is-full { ... } `
+- JS Prefixes: `js-execute` rule should not appear in CSS file but only the JS file they are tied to
+  - `<button class="component-button js-execute">...</button>`
+- Utilities: Using the `u-` prefix, utilities are a type of component modifier that is specifically designed to be used on more than one component type
+  - should serve only the modifier purpose intended without side effects when applied to any component, or component descendant.
+  - `u-warning {...}`
+
+Example component "namespaces" / naming convention
+```css
+/* core component */
+.component { ... }
+
+/* component elements */
+.component-header { ... }
+.component-content { ... }
+
+/* component descendant */
+.component-content-group { ... }
+
+/* component descendant element */
+.component-content-group-header { ... }
+.component-content-group-imgs { ... }
+```
+
+**Next Steps**:
+- Browser Compatibility
+- Media Queries
+- Accessibility and CSS
+- CSS pre-processors usage
+- Internet Explorer, or browser-specific bugs
+- Usage of CSS3 transitions, transforms, and more
+- Vendor prefixes
+- Color Management
+
 
 ### The Box Model
 
