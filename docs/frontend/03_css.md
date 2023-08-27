@@ -650,3 +650,88 @@ If grid and flexbox are not being used, your elements display in normal flow.
   - `sticky`: Has the fixed aspects of `fixed` and the more predictable document flow-honoring aspects of `relative`. When the viewport scrolls past the element, it stays anchored to the `top`, `bottom`, `left`, `right` values
     - E.G. Use this for sticky sidebar elements that follow the page when scrolling
   - `static`: Default value
+
+### Maintainable CSS
+
+https://maintainablecss.com/
+:::danger Note
+Honestly, I don't know how useful this is. Just read it and jotted it down. Use with care!
+:::
+
+Semantic class names: Name something based on what it is
+
+```css
+/* Good */
+<div class="hero">
+  <h1 class="hero-title">Heading</h1>
+  <p class="hero-tagline">Tagline</p>
+</div>
+
+/* Bad */
+<div class="pb3 pb4-ns pt4 pt5-ns mt4 black-70 fl-l w-50-l">
+  <h1 class="f4 fw6 f1-ns lh-title measure mt0">Heading</h1>
+  <p class="f5 f4-ns fw4 b measure dib-m lh-copy">Tagline</p>
+</div>
+```
+
+Use an ID when:
+- There's only one instance of a thing
+- You need to enable particular behaviours for browsers
+- Avoid using ids as a hook style --> Probably better to just use a class with one object instead
+
+CSS Conventions: `.<module>[-<component>][-<state>] {}`
+
+What is a CSS Module?
+- Module: Distinct, independent unit that can be combined with others to form a more complex structure.
+- If a component is shared, consider "upgrading it" to a module by specifying the common rules together
+- Specific styling features that are not shared can be applied directly
+
+Example shared rules and differences
+```css
+.basket-removeButton,
+.another-loginButton,
+.another-deleteButton {
+  background-color: green;
+  padding: 10px;
+  color: #fff;
+}
+
+.basket-removeButton {
+  float: right;
+}
+
+.another-deleteButton {
+  margin-bottom: 10px;
+}
+```
+
+Modifiers: Denoted by `className--modifier` are useful as an alternative to modules (or components) when they only have small and well understood differences
+- E.G. Primary / secondary button style
+
+Example modifier usage
+```html
+<div class="categoryHeader categoryHeader--boys">
+<div class="categoryHeader categoryHeader--girls">
+```
+```css
+.categoryHeader {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  /* etc */
+}
+
+.categoryHeader--boys {
+  background-image: url(/path/to/boys.jpg);
+}
+
+.categoryHeader--girls {
+  background-image: url(/path/to/girls.jpg);
+}
+```
+
+How to organize your CSS into folders?
+1. Put it all into a single folder 
+2. Put it into a module folder (folders based on feature)
+   
+Note: 31 CSS file limit in IE9
+- Add compilation step with CSS preprocessor
