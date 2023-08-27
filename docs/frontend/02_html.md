@@ -11,20 +11,20 @@ https://isobar-us.github.io/code-standards/
 
 ### Isobar Frontend Code Standards for HTML
 
-Goals for markup
+**Goals for markup**
 - Maintain a clear separation o concerns, avoid in-line styles and in-line javascript whenever possible
 - Build pages as a library of components, in such a way that blocks of code can be broken up and reused when implemented
 - Use the most meaningful yet minimal markup to complete deliverables
 - Have a reference implementation that each contributor knows what sort of structures are appropriate
   
-Before getting started:
+**Before getting started**:
 - Discuss the final delivery environment (mobile, desktop, etc)
 - Templates and types of pages
 - Which sections are reusable, which are managed by software vs by-hand
 - Framewords, CSS grid systems
 - Server-side delivery platforms
 
-What are the best practices?
+**What are the best practices?**
 - Use semantic markup when possible
 - Use the latest HTML5 markup specifications from W3C
 - Include the proper doctype to trigger standards mode (`<!doctype html>` for html5)
@@ -41,7 +41,7 @@ What are the best practices?
 - Only use tables for tabular data, not page layout
 - Make full use of the `<form>` tag for all sections requiring use input
 
-Next Steps:
+**Next Steps:**
 - Site maintenance procedures
 - Browser testing strategies
 - How new features will be added
@@ -67,18 +67,18 @@ Types of elements:
 - Void element: Self closing tags, often denoted by `<tag />`
   - Most replaced elements are void elements but not all
 
-Tags have attributes which define the behaviour, linkage and functionality of elements
+**Tags** have attributes which define the behaviour, linkage and functionality of elements
 - Most attributes are name/value pairs
 - XHTML style markup: Style to use lowercase letters for all element and attribute names, self-closing empty elements  
 
-Default appearance of semantic elements is set by user-agent stylesheets
+Default appearance of **semantic elements** is set by user-agent stylesheets
 - Semantic means "relating to meaning"
 - Semantics of an element is important for search engines and assistive technologies
 - Different browsers may have different user-agent stylesheets (elements may be rendered differently between browsers)
 
 ### Document Object Model (DOM)
 
-Nodes: Javascript object is created by the browser for each element and section of text encountered
+**Nodes**: Javascript object is created by the browser for each element and section of text encountered
 
 [HTML DOM API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API): Access and control each HTML element via the DOM 
 - HTMLElement interface: represents HTML element and all descendent nodes
@@ -139,12 +139,12 @@ Nodes: Javascript object is created by the browser for each element and section 
 ### Semantic HTML
 
 Using the correct HTML elements for your content
-- Accessibility object model (AOM)
+- **Accessibility object model (AOM**)
 - `role` attribute: describes the role of an element in the context of the document
   - Semantic elements have implicit roles (such as header, main, footer as landmarks)
   - Role names are used to build the AOM
 
-Landmarks: `<header>`, `<nav>`, `<main>`, `<aside>`, `<section>`, `<footer>`
+**Landmarks**: `<header>`, `<nav>`, `<main>`, `<aside>`, `<section>`, `<footer>`
 - Use landmarks over roles or divs which improves the clarity of the document structure 
 - `<header>`: has the banner role if the header is top-level otherwise a section header
   - Best to put your title, logo and main navigation here
@@ -153,7 +153,7 @@ Landmarks: `<header>`, `<nav>`, `<main>`, `<aside>`, `<section>`, `<footer>`
 
 ### Attributes
 
-Boolean, enumerated and global attributes
+**Boolean, enumerated and global attributes**
 - Global attributes:
   - `id`: Unique identifier that:
     - Target of a link's fragment identifier (goto fragment in page denoted by #id)
@@ -167,7 +167,7 @@ Boolean, enumerated and global attributes
   - `tabindex`: Recieve focus via tab key press
   - `role`: Part of ARIA spec covered earlier
   - `contenteditable`
-- Custom Attributes: Create custom attributes by adding the `data-` prefix
+- **Custom Attributes**: Create custom attributes by adding the `data-` prefix
 
 ### Text
 
@@ -206,7 +206,7 @@ HTML Entities: There are four reserved entities in HTML: `<, >, &, and "`. Their
 
 ### Tables
 
-Use tables for data that is being presented, compared, sorted, calculated or cross-referenced. Tables have a semantic meaning used by assistive technology for the aforementioned type of data.
+Use **tables** for data that is being presented, compared, sorted, calculated or cross-referenced. Tables have a semantic meaning used by assistive technology for the aforementioned type of data.
 - Alternative is to use lists styled with CSS; such as a grid of images if you want a neat layout
   - Grid layout without data requiring tables: Use CSS grid
   - Content in columns: Use multi-column layout 
@@ -214,7 +214,7 @@ Use tables for data that is being presented, compared, sorted, calculated or cro
 - Include aria `role` attributes when changing the CSS display property for table elements
   - Specify the `aria-sort` attribute in HTML if table column is sortable
 
-Table elements
+**Table elements**
 - `<thead>` Table head, `<tbody>` Table body and `<tfoot>` table footer
 - `<caption>` captions are the preferred way of giving a name to a table
 - `<colgroup>` `<col>` or `<tr>` `<th>` `<td>`
@@ -292,7 +292,7 @@ Example table usage
 
 ### Templates, Slot and Shadow
 
-Web Component standard: Use HTML templates, custom elements and the shadow DOM to build customized, encapsulated and reusable elements in HTML/JS
+**Web Component standard**: Use HTML templates, custom elements and the shadow DOM to build customized, encapsulated and reusable elements in HTML/JS
 - HTML Templates: `<template>` element used to declare fragments of HTML to be cloned and inserted into the DOM using Javascript
   - Contents of `<template>` are not written to the screen
   - `<slot>` Element allows you to inject your own markup into a template dynamically. Content inside the template will be distributed to the corresponding slot based on the slot names
@@ -353,7 +353,7 @@ document.body.appendChild(starRating);
 
 ### HTML APIs
 
-What are HTML APIS? Manipulating the DOM using Javascript.
+**What are HTML APIS?** Manipulating the DOM using Javascript.
 
 Example uses include:
 - Getting the attribute values of an element like "alt"
@@ -380,7 +380,7 @@ Pretty much every element has an associated DOM interface
 
 ### Inline Text Elements
 
-Elements that provide text semantics for documentation
+**Elements that provide text semantics for documentation**
 - `<code>` element: <code>Code examples </code>
 - `<pre>` element: <pre> Preformatted text</pre>
 - `<data>` element: Machine readable translation <data>11000000</data>
@@ -389,7 +389,7 @@ Elements that provide text semantics for documentation
 - `<kbd>`: <kbd>Keyboard input</kbd>
 - `<dfn>`: <dfn lang="en">Definition</dfn>
 
-Text Emphasis:
+**Text Emphasis:**
 - `<em>`: <em>Emphasises span of content</em>
 - `<mark>`: <mark>Highlight text such as marking the occurrence of search terms</mark>
 - `<strong>`: <strong>Strong importance</strong>
@@ -399,7 +399,7 @@ Text Emphasis:
 - `<b>`: <b>Draw attention to text with no semantic meaning</b>
 - `<ruby>` Container to hold annotations for other written languages
 
-White Space:
+**White Space:**
 - `<br>`: Carriage return <br />
 - `<hr>`: Horizontal rule used as a separator <hr></hr>
 - `<wbr>`: Optionally break text if it overflows the container

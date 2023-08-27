@@ -17,7 +17,7 @@ CSS Games:
 - https://cssgridgarden.com/
 - https://flexboxzombies.com/p/flexbox-zombies
 
-What is CSS?
+**What is CSS?**
 - Language for specifying how documents are presented to users (styles, layouts, etc.)
 
 I have already learnt about these things in Teaser, but I want to learn more about them.
@@ -164,7 +164,7 @@ em,
 * {}
 ```
 
-How to add CSS:
+**How to add CSS:**
 - Link styles.css in the `<head>` element using `<link rel="stylesheet" href="styles.css" />`
 - Internal stylesheet: Add `<style>` element (bad practice as can lead to inconsistencies imports, better to keep everything on a stylesheet)
 - Inline styles: Use style attribute such as `style="..."` (bad practice same as internal stylesheets)
@@ -202,7 +202,7 @@ The cascade algorithm is split into 4 distinct stages.
 | Elements & Pseudo-elements | Selectors based on element name or pseudo-element. | `h1`, `::before` |
 
 How do I verify my CSS rules are working as intended?
-- Use your browser DevTools (rule will be crossed out if it waas overridden)
+- Use your **browser DevTools** (rule will be crossed out if it waas overridden)
 
 `@rules`: Provide instruction for what CSS should perform or how it should behave
 - `@import`: imports another stylesheet into your stylesheet
