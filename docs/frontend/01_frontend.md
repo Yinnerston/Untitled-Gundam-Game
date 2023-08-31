@@ -20,11 +20,11 @@ sidebar_label: "Frontend Design"
 
 ### Templating
 
-Template processor: Consider using a static site generator to generate static webpages fro your content (markdown)
+**Template processor**: Consider using a static site generator to generate static webpages fro your content (markdown)
 - Like Jinja/Django templating but the static webpage that is generated is deployed
 - Examples of templating engines are: Jekyll, Hugo
 
-Static Site Generators vs Javascript Frameworks
+**Static Site Generators vs Javascript Frameworks**
 - Use Static Site Generators when: Content doesn't change too often, content can be directly served by a webserver without requiring a backend server
 - Use Javascript Frameworks when: you're building a single-page application (SPA) with a highly interactive user interface, complex state management, and real-time updates
 
