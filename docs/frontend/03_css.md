@@ -782,3 +782,11 @@ Logical Property Equivalents:
 New Logical units:
 - `vi`: 1% of viewport size in the inline direction
 - `vb`: !% of viewport size in the block direction
+
+### Spacing
+
+Margin Collapse: Two adjoining vertical margins collapses to the size of the largest margin
+- Can be prevented using `position: absolute` or the `float` property
+- applies to block elements
+
+`gap` property in grid and flexbox: shorthand for `row-gap` and `column-gap` for space between elements
