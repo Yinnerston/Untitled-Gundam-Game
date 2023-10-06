@@ -85,3 +85,67 @@ Group: Use to group objects together in the scene graph so transforms can be col
 - Call this at the end of the animation loop / tick function
 
 GSAP: Javascript animation framework for the web
+
+### Fullscreen Applications
+
+Remove margin around the canvas and fix the position
+
+```css
+html,
+body
+{
+    overflow: hidden;
+}
+
+.yourWebGLCanvas
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+```
+
+Add event listener fo resize
+
+```js
+window.addEventListener('resize', () =>
+{
+    // Update sizes
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
+
+    // Update camera
+    camera.aspect = sizes.width / sizes.height
+    camera.updateProjectionMatrix()
+    
+    // Update renderer
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(2, window.devicePixelRatio))
+})
+```
+
+Pixel Ratio: Physical to logical pixel mapping
+- Can cause jaggies (stair stepped edges)
+  - Jaggies are prevented through optimal compression, vector graphics or anti-aliasing
+- To handle pixel ratio, use `renderer.setPixelRatio(Math.min(2, window.devicePixelRatio))` in the resize event
+  - Humans can't see pixel ratios > 2. Do this to prevent unnecessary pixel colourings
+  - Used when you move the window between screens with different resolutions
+
+Going fullscreen: `canvas.requestFullscreen()`
+- exit: `document.exitFullscreen()`
+
+```js
+// Can change the event to whatever you want to go fullscreen
+window.addEventListener('dblclick', () =>
+{
+    if(!document.fullscreenElement)
+    {
+        canvas.requestFullscreen()
+    }
+    else
+    {
+        document.exitFullscreen()
+    }
+})
+```
