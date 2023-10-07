@@ -79,6 +79,30 @@ AxesHelper: Visualises the axis
 
 Group: Use to group objects together in the scene graph so transforms can be collectively applied to them
 
+### Geometries
+
+Geometries are made of vertices, and can become either meshes (edges between vertices) or particles (each vertice is a particle).
+
+Face: Triangle between three vertices used in a mesh.
+
+Build-in ThreeJS Geometries: There are > 15 geometries
+- [`BufferGeometry`](https://threejs.org/docs/?q=Geometry#api/en/core/BufferGeometry): Core parent class of other geometries. Has a point in space with a position, UV coordinates, a normal and other attributes like colour or size.
+- PlaneGeometry: 2d plane
+- TextGeometry: 3d text
+
+Revisiting BoxGeometry:
+- Width/Height/Depth Segments: Number of segmented rectangular faces along the sides
+- Subdivision: Refers to the process of refining the complexity of a geometric shape by adding more vertices
+
+How do you create your own geometry?
+- `Float32Array`: Define x, y, z for each vertice
+- Convert to [`BufferAttribute(arr, itemSize)`](https://threejs.org/docs/index.html?q=BufferAttri#api/en/core/BufferAttribute): Stores data for an attribute associated with `BufferGeometry`
+- Add the `BufferAttribute` to your mesh `BufferGeometry` using `setAttribute("position", yourBufferAttribute)`.
+  - `"position"` is an attribute used by the built-in ThreeJS shaders
+
+Performance considerations:
+- Used [indexes](https://threejs.org/docs/index.html?q=Buffer#api/en/core/BufferGeometry.index) on your `BufferGeometry` to reuse vertices
+
 ### Animations
 
 `Window: requestAnimationFrame()` method: Tell the browser you want to update an animation. The browser paints the animationin the next repaint / frame.
