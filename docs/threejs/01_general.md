@@ -173,3 +173,38 @@ window.addEventListener('dblclick', () =>
     }
 })
 ```
+
+### Debuggers
+
+Example Debuggers
+- dat.GUI (lil-gui because vulnerabilities)
+- control-panel
+- ControlKit
+- Uil
+- Tweakpane
+- Guify
+- Oui
+
+lil-gui:
+```js
+import GUI from 'lil-gui'
+const gui = new GUI();
+// Add GUI value in range
+gui.add(yourObject, "yourAttribute").min(-10).max(10).step(0.01)
+// Example gui state obj
+const parameters = {
+  color: 0xff0000,
+  spin: () =>
+  {
+      gsap.to(mesh.rotation, { duration: 1, y: mesh.rotation.y + Math.PI * 2 })
+  }
+}
+// Change values
+gui
+  .addColor(parameters, 'color')
+  .onChange(() =>
+  {
+      material.color.set(parameters.color)
+  })
+gui.add(parameters, 'spin')
+```
