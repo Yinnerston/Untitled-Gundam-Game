@@ -110,6 +110,66 @@ Performance considerations:
 
 GSAP: Javascript animation framework for the web
 
+### Textures
+
+An image is a 2D picture designed to be viewed by a human.
+
+A texture is specially prepared data used for various purposes in 3D graphics.
+- The points that make up a texture are called *texels*
+
+Types of texture map:
+- Color/Diffuse/Albedo: Colour map applied on the geometry
+- Alpha: Opacity map
+- Height/Displacement: Adds surface details
+- Normal: For shiny surfaces
+- Ambied Occlusion: Fake shadows for more detail
+- Metalness: Used for reflective surfaces
+- Roughness: Light dissipation, often related to metalness
+
+Physics Based Rendering (PBR)
+
+How do you load textures?
+- Create a [`TextureLoader`](https://threejs.org/docs/#api/en/loaders/TextureLoader) (optionally with a `LoadingManager`)
+
+UV Mapping: How 2D textures are placed on 3D geometries
+- (u,v)⟶(x,y,z)
+
+![UV Unwrapping](./img/uv-unwrapping.png)
+
+Texture transformations: Properties on textures
+- repeat: Repeats the texture by setting (wrapS and wrapT attributes for x, y wrapping)
+  - `colorTexture.repeat`, `colorTexture.wrapS`, `colorTexture.wrapT`
+- Offset: Offset UV coordinates of a texture
+- Rotation: Rotate a texture around the pivot point (defaults to bottom left)
+  - Change the pivot point with `center`
+
+Filtering: When textures are too close or too far, we can have visual artifacts that reduce the quality of the texture
+- **Mipmapping**: Technique of creating smaller versions of the texture, so the GPU can choose the most appropriate texture
+  - Texture size needs to be divisible by 2
+- Filters applied by ThreeJS
+  - **Minification Filter**: The minification filter happens when the pixels of texture are smaller than the pixels of the render. In other words, the texture is too big for the surface, it covers.
+    - THREE.NearestFilter
+    - THREE.LinearFilter
+    - THREE.NearestMipmapNearestFilter
+    - THREE.NearestMipmapLinearFilter
+    - THREE.LinearMipmapNearestFilter
+    - THREE.LinearMipmapLinearFilter
+  - **Magnification Filter**:The magnification filter works just like the minification filter, but when the pixels of the texture are bigger than the render's pixels. In other words, the texture too small for the surface it covers.
+    - THREE.NearestFilter: best for performance
+    - THREE.LinearFilter
+
+Optimizing textures:
+- Use sizes divisible by 2
+- `.jpg`: Lossy but lighter (better for web generally)
+- `.png`: Lossless but heavier
+  - Supports transparency (alpha) whilst JPEG doesn't
+- `Basis`: Small file, optimised for GPU
+
+Where to find textures? Consider:
+- poliigon.com
+- 3dtextures.me
+- arroway-textures.ch
+
 ### Fullscreen Applications
 
 Remove margin around the canvas and fix the position
