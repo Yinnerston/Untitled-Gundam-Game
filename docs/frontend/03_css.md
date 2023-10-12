@@ -735,3 +735,58 @@ How to organize your CSS into folders?
    
 Note: 31 CSS file limit in IE9
 - Add compilation step with CSS preprocessor
+
+### Logical Properties
+
+Logical properties refer to the edges of the box as they relate to the *flow of content.*
+- Changes if text direction or writing mode changes
+- Use logical properties to support internationalization
+
+Logical property important characteristics?
+- **Block flow**: Direction in which the content blocks are placed
+- **Inline flow**: How text flows in a sentence. (changed by `writing-mode` property)
+- Flow relative: Apply margin, padding relative to the flow of the document
+  - Using physical properties like `margin-top` dmeans the margin is constantly applied to the top of the element even if the writing direction is changed. If `margin-block-start` is applied, the margin will appear at the start of the text regardless of text direction or language
+- Sizing: Flow relative equivalent to sizing:
+  - `max-width` -> `max-inline-size`
+  - `max-height` -> `max-block-size`
+- Text align: Use `start` and `end` instead of `left` and `right`
+
+Logical Property Equivalents:
+```css
+/*equivalent works for borders, margin, etc*/
+.my-element {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  margin-left: 2em;
+  position: relative;
+  top: 0.2em;
+}
+
+.my-element {
+  padding-block-start: 2em;
+  padding-block-end: 2em;
+  margin-inline-start: 2em;
+  position: relative;
+  inset-block-start: 0.2em;
+}
+/*shorthand*/
+.my-element {
+  padding-block: 2em;
+  margin-inline: 2em 0;
+  position: relative;
+  inset-block: 0.2em 0;
+}
+```
+
+New Logical units:
+- `vi`: 1% of viewport size in the inline direction
+- `vb`: !% of viewport size in the block direction
+
+### Spacing
+
+Margin Collapse: Two adjoining vertical margins collapses to the size of the largest margin
+- Can be prevented using `position: absolute` or the `float` property
+- applies to block elements
+
+`gap` property in grid and flexbox: shorthand for `row-gap` and `column-gap` for space between elements
