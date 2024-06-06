@@ -54,8 +54,30 @@ Principles i may follow
 
 ![Usability Heuristics](./imgs/usability-heuristics.JPG)
 
+https://www.nngroup.com/articles/ten-usability-heuristics/
+
 Proposed to evaluate usability of a product by UX experts not customers 
-- 
+- Match between system and real world: Using real world objects/terminologies as representations for functions in the application. Use language you would say in situations that match in the real world
+  - E.G. a paintbrush to paint on the screen
+  - E.G. Saying "Complete my order" instead of "Submit" on an ecommerce shopping cart
+  - The process should be based on the user's mental model --> What should happen when i am doing X?
+- User control and freedom: Users should always have an option to back or or to undo an action
+  - Have undo/redo, show clear ways to exit window, have clearly labelled exits 
+  - Breadcrumbs
+- Visibility of system status: The design should always keep users informed about what is going on, using feedback
+  - E.G: Shopping cart shows how many items
+- Consistency and standards: Use similar styles for different systems. Reduce cognitive load by using platform/industry conventions and don't stray from what users are used to
+  - E.G. Taskbar with Login/Signup at the top right
+- Error Prevention: Prevent errors by showing users a confirmation/warning message
+  - Good error mesages prevent problems. As simple as possible + provide a solution for users
+    - E.G. "Program has crashed" is a bad error whilst "We can't find the page you are looking for, check out FAQ link" is a better error 
+  - Prevent high-cost errors and use helpful constraints + good defaults
+- Recognition rather than recall: Recognise from a range of options in the interface rather than force them to input it from memory
+  - Offer help in context such as selecting from menus with good defaults
+- Flexibility and efficiency of use: Use shortcuts and provide personalisation options
+- Aesthetic and minimalist design: Keeping the interface as clean as possible
+- Help and documentation: Provide an appropriate help system
+  - Try to use a step-by-step manual with appropriate pictures
 
 ### Usability Goals
 What do you need to consider when designing a product?
@@ -71,7 +93,6 @@ What do you need to consider when designing a product?
 ### User Experience Goals
 
 The user experience is subjective. Users may use adjectives to describe their experience
-- 
 
 What do UX designers do?
 - User researcher: Collect and analyse user data to create a low fidelity prototype
